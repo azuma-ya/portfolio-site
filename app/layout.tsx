@@ -48,8 +48,10 @@ export default function RootLayout({
     <html lang="ja" className="scroll-smooth scroll-pt-36">
       <body className={lineSeed.className}>
         <MotionWrapper>
-          {children}
-          {modal}
+          <div>
+            {children}
+            {modal}
+          </div>
         </MotionWrapper>
       </body>
     </html>

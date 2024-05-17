@@ -50,6 +50,7 @@ const BlogPicUp = ({ blogs }: BlogPicUpProps) => {
           },
           hidden: { opacity: 0 },
         }}
+        viewport={{ once: true }}
       >
         <AutoCarousel delay={5000}>
           <CarouselContent className="p-8">
@@ -65,6 +66,7 @@ const BlogPicUp = ({ blogs }: BlogPicUpProps) => {
                       visible: { opacity: 1, scale: 1 },
                       hidden: { opacity: 0, scale: 0 },
                     }}
+                    viewport={{ once: true }}
                   >
                     <div className=" lg:h-96 sm:h-80 h-48 overflow-hidden lg:rounded-l-[6rem] lg:rounded-tr-[6rem] md:rounded-l-[5rem] md:rounded-tr-[5rem] rounded-l-[4rem] rounded-tr-[4rem]">
                       <NextImage src={blog.image[0]} alt={blog.title} />

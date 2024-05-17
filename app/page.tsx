@@ -73,14 +73,14 @@ export default async function Home() {
   );
   return (
     <ScrollLayout>
-      <div className="bg-hero-pattern bg-cover">
+      <div className="bg-hero-pattern sm:bg-cover bg-contain bg-repeat-y ">
         <Header />
-        <main className="container flex flex-col items-center gap-80 py-28">
+        <main className="container flex flex-col items-center md:gap-80 gap-40 py-8 md:py-28">
           <HeroParticles />
           <BlogTopic blogs={blogs} />
           <section className="flex items-center gap-8">
             <div className="flex items-center gap-8">
-              <div>
+              <div className="hidden sm:block">
                 <MotionDiv
                   className="h-32 w-32 cursor-pointer bg-icon rounded-full bg-cover group"
                   drag
@@ -93,9 +93,26 @@ export default async function Home() {
                 </p>
               </div>
               <div className="max-w-lg space-y-4">
-                <div className="flex flex-col items-center">
-                  <h2 className="text-4xl font-semibold">青山 和樹</h2>
-                  <p>Aoyama Kazuki</p>
+                <div className="flex items-center justify-around">
+                  <div className="sm:hidden block">
+                    <MotionDiv
+                      className="h-16 w-16 cursor-pointer bg-icon rounded-full bg-cover group"
+                      drag
+                      dragTransition={{
+                        bounceStiffness: 600,
+                        bounceDamping: 20,
+                      }}
+                      dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
+                      whileHover={{ scale: 1.1 }}
+                    />
+                    <p className="text-center text-sm font-semibold text-accent-foreground italic group-hover:text-primary hover:text-primary duration-300 cursor-pointer">
+                      Welcom!
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <h2 className="text-4xl font-semibold">青山 和樹</h2>
+                    <p>Aoyama Kazuki</p>
+                  </div>
                 </div>
                 <div className="space-y-4">
                   <p>

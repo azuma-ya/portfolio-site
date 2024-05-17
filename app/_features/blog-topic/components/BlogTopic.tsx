@@ -20,35 +20,38 @@ export interface BlogTopicPros {
 
 const BlogTopic = ({ blogs }: BlogTopicPros) => {
   return (
-    <section className="w-full">
+    <section className="sm:w-full w-screen">
       <AutoCarousel delay={5000}>
         <CarouselContent className="">
           {blogs.map((blog, index) => (
             <CarouselItem className="" key={index}>
-              <div className="flex justify-between h-[32rem] gap-8 p-16">
-                <div className="flex flex-col items-center gap-4 self-center w-1/2">
-                  <h2 className="text-4xl font-semibold">{blog.title}</h2>
-                  <MotionButton
-                    asChild
-                    initial={{ scale: 0, rotate: 180 }}
-                    animate={{ rotate: 0, scale: 1 }}
-                    whileTap={{ scale: 0.9 }}
-                    whileHover={{ scale: 1.2 }}
-                  >
-                    <Link href={`/blog/${blog.id}`}>ブログを見る</Link>
-                  </MotionButton>
-                </div>
+              <div className="sm:flex flex-row-reverse justify-between sm:h-[32rem] h-[28rem] gap-8 sm:p-16">
                 <MotionDiv
-                  className="w-1/2 h-full"
+                  className="sm:w-1/2 sm:h-full h-2/3"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 11 }}
                 >
                   <NextImage
                     src={blog.image[0]}
                     alt="image"
-                    className="rounded-l-[8rem] rounded-tr-[8rem]"
+                    className="sm:rounded-l-[8rem] sm:rounded-tr-[8rem] hover:brightness-90 duration-200"
                   />
                 </MotionDiv>
+                <div className="flex flex-col items-center sm:gap-4 gap-2 self-center sm:w-1/2">
+                  <h2 className="sm:text-4xl text-2xl font-semibold">
+                    {blog.title}
+                  </h2>
+                  <MotionButton
+                    asChild
+                    initial={{ scale: 0, rotate: 180 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    whileTap={{ scale: 0.9 }}
+                    whileHover={{ scale: 1.2 }}
+                    className="self-end mx-2 sm:selef-auto sm:mx-0"
+                  >
+                    <Link href={`/blog/${blog.id}`}>ブログを見る</Link>
+                  </MotionButton>
+                </div>
               </div>
             </CarouselItem>
           ))}

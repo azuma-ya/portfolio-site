@@ -5,7 +5,7 @@ import ContactForm from "./ContactForm";
 const Contact = () => {
   return (
     <SectionLayout id="contact" title="CONTACT">
-      <div className="px-24">
+      <div className="max-w-4xl mx-auto">
         <ContactForm />
       </div>
     </SectionLayout>

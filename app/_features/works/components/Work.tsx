@@ -14,6 +14,7 @@ const Work = ({ work, className }: WorkProps) => {
   return (
     <Link href={`/works/${work.id}`} className={twMerge("", className)}>
       <MotionDiv
+        className=""
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
         variants={{
@@ -21,6 +22,7 @@ const Work = ({ work, className }: WorkProps) => {
           hidden: { opacity: 0, scale: 0 },
         }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        viewport={{ once: true }}
       >
         <div
           className={twMerge(
@@ -28,7 +30,11 @@ const Work = ({ work, className }: WorkProps) => {
             className
           )}
         >
-          <NextImage src={work.image[0]} alt="image" />
+          <NextImage
+            src={work.image[0]}
+            alt="image"
+            className="hover:brightness-75 duration-200"
+          />
         </div>
         <p className="text-primary">{work.createdAt.toLocaleDateString()}</p>
         <h3 className="text-2xl text-end font-semibold">{work.title}</h3>

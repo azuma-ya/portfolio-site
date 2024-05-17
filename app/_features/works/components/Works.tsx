@@ -27,6 +27,7 @@ const Works = async ({ works }: WorksProps) => {
           },
           hidden: { opacity: 0 },
         }}
+        viewport={{ once: true }}
       >
         {works.map((work, index) => (
           <Work work={work} key={index} />

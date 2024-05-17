@@ -50,6 +50,7 @@ const Artworks = ({ artworks }: ArtworkProps) => {
           },
           hidden: { opacity: 0 },
         }}
+        viewport={{ once: true }}
       >
         <AutoCarousel delay={5000}>
           <CarouselContent className="p-8">
@@ -65,6 +66,7 @@ const Artworks = ({ artworks }: ArtworkProps) => {
                       visible: { opacity: 1, scale: 1 },
                       hidden: { opacity: 0, scale: 0 },
                     }}
+                    viewport={{ once: true }}
                   >
                     <p className="absolute z-50 bg-white rounded-l-[6rem] rounded-tr-[6rem] px-8 py-4 bottom-4 right-4 text-xl opacity-0 group-hover:opacity-100 duration-300">
                       {artwork.title}

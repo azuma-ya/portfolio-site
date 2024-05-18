@@ -1,4 +1,5 @@
 import { Client } from "@notionhq/client";
+import { NotionToMarkdown } from "notion-to-md";
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -17,3 +18,11 @@ export const getPage = async (pageId: string) => {
   });
   return response;
 };
+
+const n2m = new NotionToMarkdown({ notionClient: notion });
+
+export async function getPageContent(pageId: string) {
+  const mdblocks = await n2m.pageToMarkdown(pageId, 2);
+
+  return mdblocks;
+}

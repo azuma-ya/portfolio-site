@@ -1,5 +1,5 @@
 import { getDatabase } from "@/lib/notion/notion";
-import BlogTopic from "./_features/blog-topic/components/BlogTopic";
+import BlogTopic from "./_features/blog/components/BlogTopic";
 import { Blog } from "./_types/blog";
 import Works from "./_features/works/components/Works";
 import { Work } from "./_types/work";
@@ -8,11 +8,15 @@ import Skills from "./_features/skills/components/Skills";
 import { Skill } from "./_types/skill";
 import Artworks from "./_features/artworks/components/Artworks";
 import { Artwork } from "./_types/artworks";
-import BlogPicUp from "./_features/blog-pic-up/components/BlogPicUp";
+import BlogPicUp from "./_features/blog/components/BlogPicUp";
 import ScrollLayout from "./_components/layouts/ScrollLayout";
 import Contact from "./_features/contact/components/Contact";
 import { MotionDiv } from "./_components/ui-elements/Motion/MotionComponents";
 import HeroParticles from "./_components/layouts/Particles";
+import { n2artwork, n2blog, n2skill, n2work } from "@/lib/notion/nameConvert";
+import FollowPointer from "./_components/ui-elements/Motion/FollowPointer";
+
+export const revalidate = 60;
 
 export const workDatabaseId = process.env.WORK_DATABASE_ID as string;
 export const skillDatabaseId = process.env.SKILL_DATABASE_ID as string;
@@ -24,56 +28,17 @@ export default async function Home() {
   const skillDatabase = (await getDatabase(skillDatabaseId)) as any;
   const artworkDatabase = (await getDatabase(artworkDatabaseId)) as any;
   const blogDatabase = (await getDatabase(blogDatabaseId)) as any;
-  const blogs = blogDatabase.map(
-    (blog: any): Blog => ({
-      id: blog.id,
-      title: blog.properties.Blog.title[0].plain_text,
-      description:
-        blog.properties.Description.rich_text[0]?.plain_text ?? "null",
-      image: blog.properties.Image.files.map((file: any) => file.file.url),
-      createdAt: new Date(blog.properties.CreatedAt?.date.start ?? undefined),
-    })
-  );
-  const works = workDatabase.map(
-    (work: any): Work => ({
-      id: work.id,
-      title: work.properties.Title.title[0]?.plain_text,
-      description:
-        work.properties.Description.rich_text[0]?.plain_text ?? "null",
-      image: work.properties.Image.files.map((file: any) => file.file.url),
-      createdAt: new Date(work.properties.CreatedAt?.date.start ?? undefined),
-      appLink: work.properties.AppLink.url,
-      githubLink: work.properties.GithubLink.url,
-      skills: work.properties.Skills.relation,
-    })
-  );
-  const skills = skillDatabase.map(
-    (work: any): Skill => ({
-      id: work.id,
-      title: work.properties.Title.title[0]?.plain_text,
-      description:
-        work.properties.Description.rich_text[0]?.plain_text ?? "null",
-      image: work.properties.Image.files.map((file: any) => file.file.url),
-      homepageLink: work.properties.HomepageLink.url,
-      type: work.properties.Type.select.name,
-    })
-  );
+  const blogs = blogDatabase.map((blog: any) => n2blog(blog));
+  const works = workDatabase.map((work: any): Work => n2work(work));
+  const skills = skillDatabase.map((skill: any): Skill => n2skill(skill));
   const artworks = artworkDatabase.map(
-    (artwork: any): Artwork => ({
-      id: artwork.id,
-      title: artwork.properties.Title.title[0]?.plain_text,
-      description:
-        artwork.properties.Description.rich_text[0]?.plain_text ?? "null",
-      image: artwork.properties.Image.files.map((file: any) => file.file.url),
-      createdAt: new Date(
-        artwork.properties.CreatedAt?.date.start ?? undefined
-      ),
-    })
+    (artwork: any): Artwork => n2artwork(artwork)
   );
   return (
     <ScrollLayout>
-      <div className="bg-hero-pattern sm:bg-cover bg-contain bg-repeat-y ">
+      <div className="bg-hero-pattern sm:bg-cover bg-contain bg-repeat-y">
         <Header />
+        <FollowPointer />
         <main className="container flex flex-col items-center md:gap-80 gap-40 py-8 md:py-28">
           <HeroParticles />
           <BlogTopic blogs={blogs} />
@@ -114,7 +79,7 @@ export default async function Home() {
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <p>
+                  <p className="">
                     埼玉県出身、情報学部に進学し、これを機にプログラミングを独学で学び始めました。もともとモノづくりが好きだったこともあり、IT技術を使って、人に喜んでもらえる、生活を便利にさせるアプリ開発を目指して、日々個人プロジェクトの開発を行っています。
                   </p>
                   <ul>

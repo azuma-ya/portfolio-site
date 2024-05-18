@@ -36,7 +36,9 @@ const Work = ({ work, className }: WorkProps) => {
             className="hover:brightness-75 duration-200"
           />
         </div>
-        <p className="text-primary">{work.createdAt.toLocaleDateString()}</p>
+        <p className="text-primary">
+          {work.createdAt.toLocaleDateString("ja-JP")}
+        </p>
         <h3 className="text-2xl text-end font-semibold">{work.title}</h3>
       </MotionDiv>
     </Link>

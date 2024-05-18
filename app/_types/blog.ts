@@ -4,4 +4,5 @@ export type Blog = {
   description: string;
   image: string[];
   createdAt?: Date;
+  skills: any;
 };

@@ -71,7 +71,9 @@ const BlogPicUp = ({ blogs }: BlogPicUpProps) => {
                     <div className=" lg:h-96 sm:h-80 h-48 overflow-hidden lg:rounded-l-[6rem] lg:rounded-tr-[6rem] md:rounded-l-[5rem] md:rounded-tr-[5rem] rounded-l-[4rem] rounded-tr-[4rem] shadow-xl">
                       <NextImage src={blog.image[0]} alt={blog.title} />
                     </div>
-                    <p className="">{blog.createdAt?.toLocaleDateString()}</p>
+                    <p className="">
+                      {blog.createdAt?.toLocaleDateString("ja-JP")}
+                    </p>
                     <h3 className="sm:text-2xl text-xl font-semibold">
                       {blog.title}
                     </h3>

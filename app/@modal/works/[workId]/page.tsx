@@ -24,8 +24,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { n2skill, n2work } from "@/lib/notion/nameConvert";
 import { getDatabase, getPage } from "@/lib/notion/notion";
 import React from "react";
+
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const workDatabase = await getDatabase(workDatabaseId);
@@ -42,29 +45,12 @@ export interface WorksModalProps {
 
 const WorksModal = async ({ params }: WorksModalProps) => {
   const workData = (await getPage(params.workId)) as any;
-  const work: Work = {
-    id: workData.id,
-    title: workData.properties.Title.title[0]?.plain_text,
-    description:
-      workData.properties.Description.rich_text[0]?.plain_text ?? "null",
-    image: workData.properties.Image.files.map((file: any) => file.file.url),
-    createdAt: new Date(workData.properties.CreatedAt.date.start),
-    appLink: workData.properties.AppLink.url,
-    githubLink: workData.properties.GithubLink.url,
-    skills: workData.properties.Skills.relation.map((skill: any) => skill.id),
-  };
+  const work: Work = n2work(workData);
   const skillDatabase = (await getDatabase(skillDatabaseId)) as any;
   const skills: Skill[] = skillDatabase.map(
-    (skill: any): Skill => ({
-      id: skill.id,
-      title: skill.properties.Title.title[0]?.plain_text,
-      description:
-        skill.properties.Description.rich_text[0]?.plain_text ?? "null",
-      image: skill.properties.Image.files.map((file: any) => file.file.url),
-      homepageLink: skill.properties.HomepageLink.url,
-      type: skill.properties.Type.select.name,
-    })
+    (skill: any): Skill => n2skill(skill)
   );
+
   return (
     <Dialog defaultOpen>
       <DialogContent className="sm:max-w-4xl">
@@ -104,9 +90,14 @@ const WorksModal = async ({ params }: WorksModalProps) => {
           <ScrollArea className="w-full">
             <ul className="flex py-2 gap-4">
               {skills
-                .filter((skill: Skill) => work.skills.includes(skill.id))
+                .filter((skill: Skill) =>
+                  work.skills.map((skill: any) => skill.id).includes(skill.id)
+                )
                 .map((skill: Skill, index: number) => (
-                  <li key={index} className="p-2 bg-accent rounded-md">
+                  <li
+                    key={index}
+                    className="p-2 border-primary border text-primary rounded-full"
+                  >
                     {skill.title}
                   </li>
                 ))}

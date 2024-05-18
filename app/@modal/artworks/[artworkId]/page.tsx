@@ -2,8 +2,11 @@ import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
 import { Artwork } from "@/app/_types/artworks";
 import { artworkDatabaseId } from "@/app/page";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import { n2artwork } from "@/lib/notion/nameConvert";
 import { getDatabase, getPage } from "@/lib/notion/notion";
 import React from "react";
+
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const artworkDatabase = await getDatabase(artworkDatabaseId);
@@ -20,14 +23,7 @@ export interface ArtworkModalProps {
 
 const ArtworkModal = async ({ params }: ArtworkModalProps) => {
   const artworkData = (await getPage(params.artworkId)) as any;
-  const artwork: Artwork = {
-    id: artworkData.id,
-    title: artworkData.properties.Title.title[0]?.plain_text,
-    description:
-      artworkData.properties.Description.rich_text[0]?.plain_text ?? "null",
-    image: artworkData.properties.Image.files.map((file: any) => file.file.url),
-    createdAt: new Date(artworkData.properties.CreatedAt.date.start),
-  };
+  const artwork: Artwork = n2artwork(artworkData);
 
   return (
     <Dialog defaultOpen>
@@ -41,7 +37,7 @@ const ArtworkModal = async ({ params }: ArtworkModalProps) => {
           </div>
           <div className="px-8 py-2 flex justify-between">
             <p className="">{artwork.description}</p>
-            <p className="">{artwork.createdAt.toLocaleDateString()}</p>
+            <p className="">{artwork.createdAt.toLocaleDateString("ja-JP")}</p>
           </div>
         </div>
       </DialogContent>

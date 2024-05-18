@@ -23,8 +23,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { n2skill, n2work } from "@/lib/notion/nameConvert";
 import { getDatabase, getPage } from "@/lib/notion/notion";
 import React from "react";
+
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const skillDatabase = await getDatabase(skillDatabaseId);
@@ -41,29 +44,12 @@ export interface SkillsModalProps {
 
 const SkillsModal = async ({ params }: SkillsModalProps) => {
   const skillData = (await getPage(params.skillId)) as any;
-  const skill: Skill = {
-    id: skillData.id,
-    title: skillData.properties.Title.title[0]?.plain_text,
-    description:
-      skillData.properties.Description.rich_text[0]?.plain_text ?? "null",
-    image: skillData.properties.Image.files.map((file: any) => file.file.url),
-    homepageLink: skillData.properties.HomepageLink.url,
-    type: skillData.properties.Type.select.name,
-  };
+  const skill: Skill = n2skill(skillData);
   const workDatabase = (await getDatabase(workDatabaseId)) as any;
   const works: WorkType[] = workDatabase.map(
-    (work: any): WorkType => ({
-      id: work.id,
-      title: work.properties.Title.title[0]?.plain_text,
-      description:
-        work.properties.Description.rich_text[0]?.plain_text ?? "null",
-      image: work.properties.Image.files.map((file: any) => file.file.url),
-      createdAt: new Date(work.properties.CreatedAt.start),
-      appLink: work.properties.AppLink.url,
-      githubLink: work.properties.GithubLink.url,
-      skills: work.properties.Skills.relation,
-    })
+    (work: any): WorkType => n2work(work)
   );
+
   return (
     <Dialog defaultOpen>
       <DialogContent className="sm:max-w-4xl">
@@ -97,8 +83,6 @@ const SkillsModal = async ({ params }: SkillsModalProps) => {
                 </CarouselItem>
               ))}
           </CarouselContent>
-          {/* <CarouselPrevious /> */}
-          {/* <CarouselNext /> */}
         </Carousel>
       </DialogContent>
     </Dialog>

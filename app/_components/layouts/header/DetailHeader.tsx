@@ -1,33 +1,21 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
+import { NextImage } from "../../ui-elements/iamge/NextImage";
+import icon from "@/public/icon.jpg";
 
 const DetailHeader = () => {
   return (
-    <header className="flex items-center justify-between container my-8">
-      <Link href="/">
-        <h1 className="text-4xl font-bold">
-          <span className="text-primary">A</span>zuma-ya
-        </h1>
-      </Link>
-      <div className="flex gap-12">
-        <div className="flex gap-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="#works">WORKS</Link>
-          </Button>
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="#skills">SKILLS</Link>
-          </Button>
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="#artworks">ARTWORKS</Link>
-          </Button>
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="#blog">BLOG</Link>
-          </Button>
+    <header className="bg-white py-8">
+      <div className="flex items-center justify-between container">
+        <Link href="/">
+          <h1 className="text-4xl font-bold">
+            <span className="text-primary">A</span>zuma-ya
+          </h1>
+        </Link>
+        <div className="w-12 h-12 rounded-full overflow-hidden">
+          <NextImage src={icon} alt="icon" />
         </div>
-        <Button size="sm" asChild>
-          <Link href="#contact">CONTACT</Link>
-        </Button>
       </div>
     </header>
   );

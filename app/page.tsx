@@ -9,11 +9,10 @@ import { Skill } from "./_types/skill";
 import Artworks from "./_features/artworks/components/Artworks";
 import { Artwork } from "./_types/artworks";
 import BlogPicUp from "./_features/blog-pic-up/components/BlogPicUp";
-import HeroParticles from "./_features/hero-particles/components";
 import ScrollLayout from "./_components/layouts/ScrollLayout";
 import Contact from "./_features/contact/components/Contact";
-import Footer from "./_components/layouts/footer/Footer";
 import { MotionDiv } from "./_components/ui-elements/Motion/MotionComponents";
+import HeroParticles from "./_components/layouts/Particles";
 
 export const workDatabaseId = process.env.WORK_DATABASE_ID as string;
 export const skillDatabaseId = process.env.SKILL_DATABASE_ID as string;
@@ -154,7 +153,6 @@ export default async function Home() {
           <Contact />
         </main>
       </div>
-      <Footer />
     </ScrollLayout>
   );
 }

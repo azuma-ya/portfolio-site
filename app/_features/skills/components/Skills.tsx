@@ -37,7 +37,7 @@ const Skills = async ({ skills, type }: SkillsProps) => {
             <li key={index}>
               <Link href={`/skills/${skill.id}`}>
                 <MotionDiv
-                  className="w-full flex gap-12 hover:bg-foreground/20 rounded-l-2xl rounded-tr-2xl group backdrop-blur"
+                  className="w-full flex gap-12 hover:bg-foreground/20 rounded-l-2xl rounded-tr-2xl group backdrop-blur border"
                   variants={{
                     visible: { opacity: 1, scale: 1 },
                     hidden: { opacity: 0, scale: 0 },

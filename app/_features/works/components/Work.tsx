@@ -26,7 +26,7 @@ const Work = ({ work, className }: WorkProps) => {
       >
         <div
           className={twMerge(
-            "h-80 overflow-hidden rounded-l-[5rem] rounded-tr-[5rem]",
+            "h-80 overflow-hidden lg:rounded-l-[6rem] lg:rounded-tr-[6rem] md:rounded-l-[5rem] md:rounded-tr-[5rem] rounded-l-[4rem] rounded-tr-[4rem] shadow-xl shadow-xl",
             className
           )}
         >

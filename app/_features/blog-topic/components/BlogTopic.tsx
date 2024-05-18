@@ -27,14 +27,14 @@ const BlogTopic = ({ blogs }: BlogTopicPros) => {
             <CarouselItem className="" key={index}>
               <div className="sm:flex flex-row-reverse justify-between sm:h-[32rem] h-[28rem] gap-8 sm:p-16">
                 <MotionDiv
-                  className="sm:w-1/2 sm:h-full h-2/3"
+                  className="sm:w-1/2 sm:h-full h-2/3 "
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 11 }}
                 >
                   <NextImage
                     src={blog.image[0]}
                     alt="image"
-                    className="sm:rounded-l-[8rem] sm:rounded-tr-[8rem] hover:brightness-90 duration-200"
+                    className="sm:rounded-l-[8rem] shadow-xl sm:rounded-tr-[8rem] hover:brightness-90 duration-200"
                   />
                 </MotionDiv>
                 <div className="flex flex-col items-center sm:gap-4 gap-2 self-center sm:w-1/2">
@@ -47,7 +47,7 @@ const BlogTopic = ({ blogs }: BlogTopicPros) => {
                     animate={{ rotate: 0, scale: 1 }}
                     whileTap={{ scale: 0.9 }}
                     whileHover={{ scale: 1.2 }}
-                    className="self-end mx-2 sm:selef-auto sm:mx-0"
+                    className="self-end mx-2 sm:self-auto sm:mx-0"
                   >
                     <Link href={`/blog/${blog.id}`}>ブログを見る</Link>
                   </MotionButton>

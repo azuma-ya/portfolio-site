@@ -1,7 +1,8 @@
 import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
 import AutoCarousel from "@/app/_components/ui-parts/AutoCarousel";
+import { Skill } from "@/app/_types/skill";
 import { Work } from "@/app/_types/work";
-import { workDatabaseId } from "@/app/page";
+import { skillDatabaseId, workDatabaseId } from "@/app/page";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -21,6 +22,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { getDatabase, getPage } from "@/lib/notion/notion";
 import React from "react";
@@ -46,11 +48,23 @@ const WorksModal = async ({ params }: WorksModalProps) => {
     description:
       workData.properties.Description.rich_text[0]?.plain_text ?? "null",
     image: workData.properties.Image.files.map((file: any) => file.file.url),
-    createdAt: new Date(workData.properties.CreatedAt.start),
+    createdAt: new Date(workData.properties.CreatedAt.date.start),
     appLink: workData.properties.AppLink.url,
     githubLink: workData.properties.GithubLink.url,
-    skills: workData.properties.Skills.relation,
+    skills: workData.properties.Skills.relation.map((skill: any) => skill.id),
   };
+  const skillDatabase = (await getDatabase(skillDatabaseId)) as any;
+  const skills: Skill[] = skillDatabase.map(
+    (skill: any): Skill => ({
+      id: skill.id,
+      title: skill.properties.Title.title[0]?.plain_text,
+      description:
+        skill.properties.Description.rich_text[0]?.plain_text ?? "null",
+      image: skill.properties.Image.files.map((file: any) => file.file.url),
+      homepageLink: skill.properties.HomepageLink.url,
+      type: skill.properties.Type.select.name,
+    })
+  );
   return (
     <Dialog defaultOpen>
       <DialogContent className="sm:max-w-4xl">
@@ -64,7 +78,7 @@ const WorksModal = async ({ params }: WorksModalProps) => {
           <CarouselContent className="">
             {work.image.map((imageUrl, index) => (
               <CarouselItem className="" key={index}>
-                <div className="w-full h-96 rounded-l-[6rem] rounded-tr-[6rem] overflow-hidden">
+                <div className="w-full sm:h-96 h-64 rounded-l-[6rem] rounded-tr-[6rem] overflow-hidden">
                   <NextImage src={imageUrl} alt="image" />
                 </div>
               </CarouselItem>
@@ -87,11 +101,18 @@ const WorksModal = async ({ params }: WorksModalProps) => {
             </a>
           </p>
           <Separator />
-          <ul className="flex">
-            {work.skills.map((skill: { id: string }, index: number) => (
-              <li key={index}>{skill.id}</li>
-            ))}
-          </ul>
+          <ScrollArea className="w-full">
+            <ul className="flex py-2 gap-4">
+              {skills
+                .filter((skill: Skill) => work.skills.includes(skill.id))
+                .map((skill: Skill, index: number) => (
+                  <li key={index} className="p-2 bg-accent rounded-md">
+                    {skill.title}
+                  </li>
+                ))}
+            </ul>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
         </div>
       </DialogContent>
     </Dialog>

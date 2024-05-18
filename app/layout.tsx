@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import React from "react";
 import MotionWrapper from "./_components/layouts/MotionWrapper";
+import Footer from "./_components/layouts/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -46,13 +47,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className="scroll-smooth scroll-pt-36">
-      <body className={lineSeed.className}>
-        <MotionWrapper>
-          <div>
-            {children}
-            {modal}
-          </div>
-        </MotionWrapper>
+      <body className={lineSeed.className + " flex flex-col min-h-screen"}>
+        <div className="flex-grow">
+          <MotionWrapper>
+            <div>
+              {children}
+              {modal}
+            </div>
+          </MotionWrapper>
+        </div>
+        <Footer />
       </body>
     </html>
   );

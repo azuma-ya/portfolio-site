@@ -88,8 +88,12 @@ const SkillsModal = async ({ params }: SkillsModalProps) => {
                 work.skills.map((skill: any) => skill.id).includes(skill.id)
               )
               .map((work, index) => (
-                <CarouselItem className="basis-1/3" key={index}>
-                  <Work work={work} key={index} className="w-full h-32" />
+                <CarouselItem className="sm:basis-1/3" key={index}>
+                  <Work
+                    work={work}
+                    key={index}
+                    className="w-full sm:h-32 h-48"
+                  />
                 </CarouselItem>
               ))}
           </CarouselContent>

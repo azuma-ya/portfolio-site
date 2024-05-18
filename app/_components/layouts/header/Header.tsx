@@ -17,7 +17,7 @@ import { MotionButton } from "../../ui-elements/Motion/MotionComponents";
 
 const Header = () => {
   return (
-    <header className=" py-8 backdrop-blur-sm fixed z-40 w-full bg-accent/50 border-b-1">
+    <header className="shadow-lg py-8 backdrop-blur-sm fixed z-40 w-full bg-accent/50 border-b-1">
       <div className="flex items-center justify-between container">
         <Link href="/">
           <h1 className="text-4xl font-bold">

@@ -100,16 +100,16 @@ export default function HeroParticles() {
           straight: false,
         },
         number: {
-          density: {
-            enable: true,
-          },
+          //   density: {
+          //     enable: true,
+          //   },
           value: 10,
         },
         shape: {
           type: "circle",
         },
         size: {
-          value: { min: 10, max: 30 },
+          value: { min: 10, max: 50 },
         },
       },
       detectRetina: true,

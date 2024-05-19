@@ -8,12 +8,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export const revalidate = 60;
-
 const ArtWorksPage = async () => {
   const artworkDatabase = (await getDatabase(artworkDatabaseId)) as any;
-  const artworks: Artwork[] = artworkDatabase.map((artwork: any) =>
-    n2artwork(artwork)
+  const artworks: Artwork[] = await Promise.all(
+    artworkDatabase.map(async (artwork: any) => await n2artwork(artwork))
   );
 
   return (

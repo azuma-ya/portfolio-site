@@ -6,13 +6,15 @@ import { n2blog, n2skill } from "@/lib/notion/nameConvert";
 import { getDatabase } from "@/lib/notion/notion";
 import React from "react";
 
-export const revalidate = 60;
-
 const BlogPage = async () => {
   const blogDatabase = (await getDatabase(blogDatabaseId)) as any;
-  const blogs: Blog[] = blogDatabase.map((blog: any): Blog => n2blog(blog));
+  const blogs: Blog[] = await Promise.all(
+    blogDatabase.map(async (blog: any) => await n2blog(blog))
+  );
   const skillDatabase = (await getDatabase(skillDatabaseId)) as any;
-  const skills = skillDatabase.map((skill: any): Skill => n2skill(skill));
+  const skills: Skill[] = await Promise.all(
+    skillDatabase.map(async (skill: any) => await n2skill(skill))
+  );
 
   return <BlogPresentation blogs={blogs} skills={skills} />;
 };

@@ -16,8 +16,6 @@ import HeroParticles from "./_components/layouts/Particles";
 import { n2artwork, n2blog, n2skill, n2work } from "@/lib/notion/nameConvert";
 import FollowPointer from "./_components/ui-elements/Motion/FollowPointer";
 
-export const revalidate = 60;
-
 export const workDatabaseId = process.env.WORK_DATABASE_ID as string;
 export const skillDatabaseId = process.env.SKILL_DATABASE_ID as string;
 export const artworkDatabaseId = process.env.ARTWORK_DATABASE_ID as string;
@@ -28,12 +26,19 @@ export default async function Home() {
   const skillDatabase = (await getDatabase(skillDatabaseId)) as any;
   const artworkDatabase = (await getDatabase(artworkDatabaseId)) as any;
   const blogDatabase = (await getDatabase(blogDatabaseId)) as any;
-  const blogs = blogDatabase.map((blog: any) => n2blog(blog));
-  const works = workDatabase.map((work: any): Work => n2work(work));
-  const skills = skillDatabase.map((skill: any): Skill => n2skill(skill));
-  const artworks = artworkDatabase.map(
-    (artwork: any): Artwork => n2artwork(artwork)
+  const blogs: Blog[] = await Promise.all(
+    blogDatabase.map(async (blog: any) => await n2blog(blog))
   );
+  const works: Work[] = await Promise.all(
+    workDatabase.map(async (work: any) => await n2work(work))
+  );
+  const skills: Skill[] = await Promise.all(
+    skillDatabase.map(async (skill: any) => await n2skill(skill))
+  );
+  const artworks: Artwork[] = await Promise.all(
+    artworkDatabase.map(async (artwork: any) => await n2artwork(artwork))
+  );
+
   return (
     <ScrollLayout>
       <div className="bg-hero-pattern sm:bg-cover bg-contain bg-repeat-y">

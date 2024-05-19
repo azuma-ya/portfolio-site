@@ -28,8 +28,6 @@ import { n2skill, n2work } from "@/lib/notion/nameConvert";
 import { getDatabase, getPage } from "@/lib/notion/notion";
 import React from "react";
 
-export const revalidate = 60;
-
 export async function generateStaticParams() {
   const workDatabase = await getDatabase(workDatabaseId);
   return workDatabase.map((work) => ({
@@ -45,10 +43,10 @@ export interface WorksModalProps {
 
 const WorksModal = async ({ params }: WorksModalProps) => {
   const workData = (await getPage(params.workId)) as any;
-  const work: Work = n2work(workData);
+  const work: Work = await n2work(workData);
   const skillDatabase = (await getDatabase(skillDatabaseId)) as any;
-  const skills: Skill[] = skillDatabase.map(
-    (skill: any): Skill => n2skill(skill)
+  const skills: Skill[] = await Promise.all(
+    skillDatabase.map(async (skill: any) => await n2skill(skill))
   );
 
   return (

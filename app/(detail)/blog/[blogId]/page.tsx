@@ -10,8 +10,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { n2blog } from "@/lib/notion/nameConvert";
 
-export const revalidate = 60;
-
 export async function generateStaticParams() {
   const blogDatabase = await getDatabase(blogDatabaseId);
   return blogDatabase.map((blog) => ({
@@ -27,7 +25,7 @@ export interface BlogDetailPageProps {
 
 const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
   const blogData = (await getPage(params.blogId)) as any;
-  const blog: Blog = n2blog(blogData);
+  const blog: Blog = await n2blog(blogData);
   const blogContents: any = await getPageContent(params.blogId);
 
   return (

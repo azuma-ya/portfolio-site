@@ -18,6 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Toggle } from "@/components/ui/toggle";
 import { cn } from "@/lib/utils";
 import { Check, Plus } from "lucide-react";
@@ -36,112 +37,116 @@ const BlogPresentation = ({ blogs, skills }: BlogPresentationProps) => {
   >([]);
 
   return (
-    <div>
-      <div className="flex my-16 gap-4 max-w-6xl mx-auto">
-        {selectedSkills.map((skill, index) => (
+    <div className="container">
+      <ScrollArea className="my-8">
+        <div className="flex my-4 gap-4 max-w-6xl mx-auto">
+          {selectedSkills.map((skill, index) => (
+            <MotionDiv
+              key={index}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 20,
+              }}
+            >
+              <Toggle
+                defaultPressed={skill.toggle}
+                className="rounded-full"
+                onPressedChange={(toggle: boolean) =>
+                  setSelectedSkills(
+                    selectedSkills.map((selectedSkill) =>
+                      selectedSkill.id === skill.id
+                        ? { ...selectedSkill, toggle: toggle }
+                        : selectedSkill
+                    )
+                  )
+                }
+              >
+                {skill.title}
+              </Toggle>
+            </MotionDiv>
+          ))}
           <MotionDiv
-            key={index}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
             transition={{
               type: "spring",
               stiffness: 260,
               damping: 20,
             }}
           >
-            <Toggle
-              defaultPressed={skill.toggle}
-              className="rounded-full"
-              onPressedChange={(toggle: boolean) =>
-                setSelectedSkills(
-                  selectedSkills.map((selectedSkill) =>
-                    selectedSkill.id === skill.id
-                      ? { ...selectedSkill, toggle: toggle }
-                      : selectedSkill
-                  )
-                )
-              }
-            >
-              {skill.title}
-            </Toggle>
-          </MotionDiv>
-        ))}
-        <MotionDiv
-          transition={{
-            type: "spring",
-            stiffness: 260,
-            damping: 20,
-          }}
-        >
-          <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                role="combobox"
-                aria-expanded={open}
-                className=""
-                // size="icon"
-              >
-                {/* <Plus /> */}
-                add tags
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0">
-              <Command>
-                <CommandInput placeholder="Search framework..." />
-                <CommandList>
-                  <CommandEmpty>No framework found.</CommandEmpty>
-                  <CommandGroup>
-                    {skills.map((skill, index) => (
-                      <CommandItem
-                        key={index}
-                        value={skill.title}
-                        onSelect={(currentValue) => {
-                          if (
-                            !selectedSkills.find(
-                              (skill) => skill.title === currentValue
-                            )
-                          ) {
-                            setSelectedSkills([
-                              ...selectedSkills,
-                              {
-                                ...(skills.find(
-                                  (skill) => skill.title === currentValue
-                                ) as Skill),
-                                toggle: true,
-                              },
-                            ]);
-                          } else {
-                            setSelectedSkills(
-                              selectedSkills.filter(
-                                (selectedSkill) =>
-                                  selectedSkill.title !== currentValue
+            <Popover open={open} onOpenChange={setOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  role="combobox"
+                  aria-expanded={open}
+                  className=""
+                  // size="icon"
+                >
+                  {/* <Plus /> */}
+                  add tags
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-[200px] p-0">
+                <Command>
+                  <CommandInput placeholder="Search tags..." />
+                  <CommandList>
+                    <CommandEmpty>No tag found.</CommandEmpty>
+                    <CommandGroup>
+                      {skills.map((skill, index) => (
+                        <CommandItem
+                          key={index}
+                          value={skill.title}
+                          onSelect={(currentValue) => {
+                            if (
+                              !selectedSkills.find(
+                                (skill) => skill.title === currentValue
                               )
-                            );
-                          }
-                          setOpen(false);
-                        }}
-                      >
-                        <Check
-                          className={cn(
-                            "mr-2 h-4 w-4",
-                            selectedSkills
-                              .map((skill) => skill.title)
-                              .includes(skill.title)
-                              ? "opacity-100"
-                              : "opacity-0"
-                          )}
-                        />
-                        {skill.title}
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
-        </MotionDiv>
-      </div>
+                            ) {
+                              setSelectedSkills([
+                                ...selectedSkills,
+                                {
+                                  ...(skills.find(
+                                    (skill) => skill.title === currentValue
+                                  ) as Skill),
+                                  toggle: true,
+                                },
+                              ]);
+                            } else {
+                              setSelectedSkills(
+                                selectedSkills.filter(
+                                  (selectedSkill) =>
+                                    selectedSkill.title !== currentValue
+                                )
+                              );
+                            }
+                            setOpen(false);
+                          }}
+                        >
+                          <Check
+                            className={cn(
+                              "mr-2 h-4 w-4",
+                              selectedSkills
+                                .map((skill) => skill.title)
+                                .includes(skill.title)
+                                ? "opacity-100"
+                                : "opacity-0"
+                            )}
+                          />
+                          {skill.title}
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
+          </MotionDiv>
+        </div>
+
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
       <div className="max-w-6xl mx-auto mb-32 grid sm:grid-cols-2 gap-8 grid-cols-1">
         {blogs
           .filter(

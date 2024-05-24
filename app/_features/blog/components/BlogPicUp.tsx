@@ -68,7 +68,7 @@ const BlogPicUp = ({ blogs }: BlogPicUpProps) => {
                     }}
                     viewport={{ once: true }}
                   >
-                    <div className=" lg:h-96 sm:h-80 h-48 overflow-hidden lg:rounded-l-[6rem] lg:rounded-tr-[6rem] md:rounded-l-[5rem] md:rounded-tr-[5rem] rounded-l-[4rem] rounded-tr-[4rem] shadow-xl">
+                    <div className=" lg:h-96 sm:h-80 h-48 overflow-hidden lg:rounded-l-[6rem] lg:rounded-tr-[6rem] md:rounded-l-[5rem] md:rounded-tr-[5rem] rounded-l-[4rem] rounded-tr-[4rem] border-2">
                       <NextImage src={blog.image[0]} alt={blog.title} />
                     </div>
                     <p className="">

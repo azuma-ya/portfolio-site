@@ -37,7 +37,7 @@ const Skills = async ({ skills, type }: SkillsProps) => {
             <li key={index}>
               <Link href={`/skills/${skill.id}`}>
                 <MotionDiv
-                  className="w-full flex gap-12 hover:bg-foreground/20 rounded-l-2xl rounded-tr-2xl group backdrop-blur border"
+                  className="w-full flex items-center gap-12 hover:bg-foreground/20 rounded-l-2xl rounded-tr-2xl group backdrop-blur border-2"
                   variants={{
                     visible: { opacity: 1, scale: 1 },
                     hidden: { opacity: 0, scale: 0 },
@@ -47,7 +47,7 @@ const Skills = async ({ skills, type }: SkillsProps) => {
                   whileTap={{ scale: 0.9 }}
                   viewport={{ once: true }}
                 >
-                  <div className="flex-none w-24 h-24 p-6 bg-white rounded-2xl group-hover:bg-white/30 border">
+                  <div className="flex-none w-24 h-24 p-6 bg-white rounded-2xl group-hover:bg-white/30">
                     <NextImage src={skill.image[0]} alt={skill.title} />
                   </div>
                   <div className="space-y-4 grow">

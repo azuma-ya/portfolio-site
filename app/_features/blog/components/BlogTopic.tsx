@@ -34,7 +34,7 @@ const BlogTopic = ({ blogs }: BlogTopicPros) => {
                   <NextImage
                     src={blog.image[0]}
                     alt="image"
-                    className="sm:rounded-l-[8rem] shadow-xl sm:rounded-tr-[8rem] hover:brightness-90 duration-200"
+                    className="sm:rounded-l-[8rem] border-2 sm:rounded-tr-[8rem] hover:brightness-90 duration-200"
                   />
                 </MotionDiv>
                 <div className="flex flex-col items-center sm:gap-4 gap-2 self-center sm:w-1/2">

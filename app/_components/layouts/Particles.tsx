@@ -103,7 +103,7 @@ export default function HeroParticles() {
           //   density: {
           //     enable: true,
           //   },
-          value: 10,
+          value: 8,
         },
         shape: {
           type: "circle",

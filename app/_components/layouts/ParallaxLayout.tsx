@@ -12,9 +12,9 @@ const useParallax = (value: MotionValue<number>, distance: number) => {
 
 const Parallaxlayout = ({ children }: { children: React.ReactNode }) => {
   const { scrollYProgress } = useScroll();
-  const y = useParallax(scrollYProgress, 2);
+  const y = useParallax(scrollYProgress, 3000);
   return (
-    <MotionDiv className="h-[calc(100%_+_2px)]" style={{ y }}>
+    <MotionDiv className="" style={{ y }}>
       {children}
     </MotionDiv>
   );

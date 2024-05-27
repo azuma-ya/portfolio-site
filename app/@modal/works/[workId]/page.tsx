@@ -62,7 +62,7 @@ const WorksModal = async ({ params }: WorksModalProps) => {
           <CarouselContent className="">
             {work.image.map((imageUrl, index) => (
               <CarouselItem className="" key={index}>
-                <div className="w-full sm:h-96 h-64 rounded-l-[6rem] rounded-tr-[6rem] overflow-hidden">
+                <div className="w-full sm:h-96 h-64 rounded-l-[6rem] rounded-tr-[6rem] overflow-hidden border-2">
                   <NextImage src={imageUrl} alt="image" />
                 </div>
               </CarouselItem>

@@ -44,7 +44,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
           <FaHeart className="text-red-400" />
         </MotionButton>
         <div className="bg-white rounded-l-2xl rounded-tr-2xl p-4 grow">
-          <div className="h-64 mb-8">
+          <div className="h-64 mb-8 w-full">
             <NextImage src={blog.image[0]} alt={blog.description} />
           </div>
           <div className="py-10 lg:py-10">

@@ -31,11 +31,13 @@ const BlogTopic = ({ blogs }: BlogTopicPros) => {
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 11 }}
                 >
-                  <NextImage
-                    src={blog.image[0]}
-                    alt="image"
-                    className="sm:rounded-l-[8rem] border-2 sm:rounded-tr-[8rem] hover:brightness-90 duration-200"
-                  />
+                  <Link href={`/blog/${blog.id}`}>
+                    <NextImage
+                      src={blog.image[0]}
+                      alt="image"
+                      className="sm:rounded-l-[8rem] border-2 sm:rounded-tr-[8rem] hover:brightness-90 duration-200"
+                    />
+                  </Link>
                 </MotionDiv>
                 <div className="flex flex-col items-center sm:gap-4 gap-2 self-center sm:w-1/2">
                   <h2 className="sm:text-4xl text-2xl font-semibold">

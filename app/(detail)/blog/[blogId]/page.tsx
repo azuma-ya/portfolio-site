@@ -45,11 +45,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
         </MotionButton>
         <div className="bg-white rounded-l-2xl rounded-tr-2xl p-4 grow w-ful">
           <div className="h-64 mb-8 w-full">
-            <NextImage
-              src={blog.image[0]}
-              alt={blog.description}
-              className=""
-            />
+            <NextImage src={blog.image[0]} alt={blog.title} className="" />
           </div>
           <div className="py-10 lg:py-10">
             {blogContents.map((content: any, index: any) => {

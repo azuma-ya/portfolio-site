@@ -14,7 +14,7 @@ const Parallaxlayout = ({ children }: { children: React.ReactNode }) => {
   const { scrollYProgress } = useScroll();
   const y = useParallax(scrollYProgress, 3000);
   return (
-    <MotionDiv className="" style={{ y }}>
+    <MotionDiv className="w-full px-auto" style={{ y }}>
       {children}
     </MotionDiv>
   );

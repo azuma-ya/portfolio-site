@@ -29,11 +29,11 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
   const blogContents: any = await getPageContent(params.blogId);
 
   return (
-    <div className="max-w-6xl mx-auto mb-32">
+    <div className="max-w-7xl mx-auto mb-32">
       <h1 className="text-4xl font-semibold my-32 text-center mx-4">
         {blog.title}
       </h1>
-      <div className="flex gap-4">
+      <div className="flex gap-4 w-full">
         <MotionButton
           size="icon"
           variant="ghost"
@@ -43,9 +43,13 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
         >
           <FaHeart className="text-red-400" />
         </MotionButton>
-        <div className="bg-white rounded-l-2xl rounded-tr-2xl p-4 grow">
+        <div className="bg-white rounded-l-2xl rounded-tr-2xl p-4 grow w-ful">
           <div className="h-64 mb-8 w-full">
-            <NextImage src={blog.image[0]} alt={blog.description} />
+            <NextImage
+              src={blog.image[0]}
+              alt={blog.description}
+              className=""
+            />
           </div>
           <div className="py-10 lg:py-10">
             {blogContents.map((content: any, index: any) => {
@@ -87,7 +91,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
               )
               .map((content: any, index: any) => (
                 <li key={index} className="">
-                  <Button asChild variant="link" className="my-0">
+                  <Button asChild variant="link" className="my-0 text-wrap">
                     <Link href={`#${content.blockId}`}>
                       {content.parent
                         .replace(/\n/g, "  \n")

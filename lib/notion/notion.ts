@@ -21,8 +21,8 @@ export const getPage = async (pageId: string) => {
 
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
-export async function getPageContent(pageId: string) {
-  const mdblocks = await n2m.pageToMarkdown(pageId, 2);
+export const getPageContent = async (pageId: string) => {
+  const mdblocks = await n2m.pageToMarkdown(pageId);
 
   return mdblocks;
-}
+};

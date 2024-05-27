@@ -20,7 +20,7 @@ export const saveImageIfNeed = async (file: any): Promise<string> => {
     const blob = (await getImageAsBinary(file.file.url)) as Blob;
     uploadImage(fileName, blob);
   }
-  console.log(imageUrlAtS3(fileName));
+  // console.log(imageUrlAtS3(fileName));
   return imageUrlAtS3(fileName);
 };
 
@@ -66,5 +66,3 @@ const imageUrlAtS3 = (keyName: string) => {
     "https://" + process.env.AWS_BUCKET_NAME + "." + hostName + "/" + keyName
   );
 };
-
-// src="https://prod-files-secure.s3.us-west-2.amazonaws.com/e3cb8d25-3251-4664-85b1-46c7b0943c35/76f18adf-d322-47a0-b7cb-5bfc5277bba0/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2024-05-24_232538.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240527%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240527T133341Z&X-Amz-Expires=3600&X-Amz-Signature=50e5a69adc9ab8f79bb9e361870853d790239cf34964ddbfdf3a988a5444dee1&X-Amz-SignedHeaders=host&x-id=GetObject"

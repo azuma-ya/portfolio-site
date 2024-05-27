@@ -23,10 +23,44 @@ export interface BlogDetailPageProps {
   };
 }
 
+const NotionMarkdown = (content: any, index: number, tab: string = "") => {
+  const formattedMarkdown = tab + content.parent.replace(/\n/g, "  \n");
+  return (
+    <div className="" key={index}>
+      <ReactMarkdown
+        className="prose lg:prose-xl"
+        components={{
+          ol: ({ node, ...props }) => (
+            <ol className="list-decimal list-inside pb-2" {...props} />
+          ),
+          li: ({ node, ...props }) => <li {...props} />,
+          h1: ({ node, ...props }) => (
+            <h1
+              {...props}
+              id={content.blockId}
+              className="pt-6 text-2xl lg:text-4xl"
+            />
+          ),
+          h2: ({ node, ...props }) => (
+            <h2 {...props} id={content.blockId} className="pt-3" />
+          ),
+        }}
+      >
+        {formattedMarkdown}
+      </ReactMarkdown>
+      {content.children.map((child: any, index2: number) =>
+        NotionMarkdown(child, index * index2, "  ")
+      )}
+    </div>
+  );
+};
+
 const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
   const blogData = (await getPage(params.blogId)) as any;
   const blog: Blog = await n2blog(blogData);
   const blogContents: any = await getPageContent(params.blogId);
+
+  console.dir(blogContents, { depth: null });
 
   return (
     <div className="max-w-7xl mx-auto mb-32">
@@ -48,32 +82,10 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
             <NextImage src={blog.image[0]} alt={blog.title} className="" />
           </div>
           <div className="py-10 lg:py-10">
-            {blogContents.map((content: any, index: any) => {
-              const formattedMarkdown = content.parent.replace(/\n/g, "  \n");
-              return (
-                <div className="pt-3" key={index}>
-                  <ReactMarkdown
-                    className="prose lg:prose-xl"
-                    components={{
-                      ol: ({ node, ...props }) => (
-                        <ol
-                          className="list-decimal list-inside pb-2"
-                          {...props}
-                        />
-                      ),
-                      li: ({ node, ...props }) => <li {...props} />,
-                      h1: ({ node, ...props }) => (
-                        <h1 {...props} id={content.blockId} />
-                      ),
-                      h2: ({ node, ...props }) => (
-                        <h2 {...props} id={content.blockId} />
-                      ),
-                    }}
-                  >
-                    {formattedMarkdown}
-                  </ReactMarkdown>
-                </div>
-              );
+            {blogContents.map((content: any, index: number) => {
+              if (content.type === "image") return;
+              // if (!!content.children)
+              return NotionMarkdown(content, index);
             })}
           </div>
         </div>

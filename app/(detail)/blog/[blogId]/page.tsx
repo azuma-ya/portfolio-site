@@ -41,7 +41,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
     )
     .map((image: any) => ({
       name: decodeURI(image[0].match(/[^\/]*?(\.jpeg|\.jpg|\.png|\.gif)/)[0]),
-      file: { url: image[0] },
+      file: { url: decodeURI(image[0]) },
     }));
 
   if (!!images) {

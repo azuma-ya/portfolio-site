@@ -17,6 +17,13 @@ const config = {
         "2xl": "1400px",
       },
     },
+    listStyleType: {
+      none: "none",
+      disc: "disc",
+      decimal: "decimal",
+      square: "square",
+      roman: "upper-roman",
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -78,7 +85,11 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    require("tailwind-scrollbar"),
+  ],
 } satisfies Config;
 
 export default config;

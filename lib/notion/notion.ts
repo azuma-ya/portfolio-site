@@ -23,6 +23,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 export const getPageContent = async (pageId: string) => {
   const mdblocks = await n2m.pageToMarkdown(pageId);
+  const mdString = n2m.toMarkdownString(mdblocks);
 
-  return mdblocks;
+  return mdString;
 };

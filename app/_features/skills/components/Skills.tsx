@@ -47,7 +47,7 @@ const Skills = async ({ skills, type }: SkillsProps) => {
                   whileTap={{ scale: 0.9 }}
                   viewport={{ once: true }}
                 >
-                  <div className="flex-none w-24 h-24 p-6 bg-white rounded-2xl group-hover:bg-white/30 border-2">
+                  <div className="flex-none w-24 h-24 p-6 bg-white rounded-2xl border-2">
                     <NextImage src={skill.image[0]} alt={skill.title} />
                   </div>
                   <div className="space-y-4 grow hover:bg-foreground/20 rounded-l-2xl rounded-tr-2xl border-2 backdrop-blur-2xl p-2 md:p-6">

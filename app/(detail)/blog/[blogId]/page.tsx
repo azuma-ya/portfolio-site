@@ -37,7 +37,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
   const images = blogContent.parent
     .match(/!\[[^\]]*\]\(([^)]+)\)/g)
     ?.map((imageUrl: string) =>
-      imageUrl.match(/https?:\/\/[\w!?/+\-_~;.,*&@#$%()='[\]]+/)
+      imageUrl.match(/https?:\/\/[\w!?/+\-_~;.,*&@#$%()='[\]]+(?<!\))/)
     )
     .map((image: any) => ({
       name: decodeURI(image[0].match(/[^\/]*?(\.jpeg|\.jpg|\.png|\.gif)/)[0]),

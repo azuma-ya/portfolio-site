@@ -101,7 +101,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
             </ReactMarkdown>
           </div>
         </div>
-        <div className="w-1/4 flex-none bg-white h-64 rounded-l-2xl rounded-tr-2xl p-4 hidden sm:block">
+        <div className="w-1/4 flex-none bg-white min-h-64 h-full rounded-l-2xl rounded-tr-2xl p-4 hidden sm:block">
           <p className="font-semibold py-2">目次</p>
           <ul>
             {

@@ -102,8 +102,9 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
                 ),
                 pre: Pre,
               }}
-              children={blogContent.parent}
-            />
+            >
+              {blogContent.parent}
+            </ReactMarkdown>
           </div>
         </div>
         <div className="w-1/4 flex-none bg-white min-h-64 h-full rounded-l-2xl rounded-tr-2xl p-4 hidden sm:block">
@@ -173,11 +174,9 @@ const Pre = ({
   const language = className?.replace("language-", "");
 
   return (
-    <SyntaxHighlighter
-      style={tomorrow}
-      language={language}
-      children={String(code).replace(/\n$/, "")}
-    />
+    <SyntaxHighlighter style={tomorrow} language={language}>
+      {String(code).replace(/\n$/, "")}
+    </SyntaxHighlighter>
   );
 };
 
@@ -190,10 +189,8 @@ const CodeBlock = (props: any) => {
   const match = /language-(\w+)/.exec(className || "");
   const lang = match && match[1] ? match[1] : "";
   return (
-    <SyntaxHighlighter
-      style={okaidia}
-      language={lang}
-      children={String(children).replace(/\n$/, "")}
-    />
+    <SyntaxHighlighter style={okaidia} language={lang}>
+      {String(children).replace(/\n$/, "")}
+    </SyntaxHighlighter>
   );
 };

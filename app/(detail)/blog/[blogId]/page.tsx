@@ -4,8 +4,7 @@ import { Blog } from "@/app/_types/blog";
 import { blogDatabaseId } from "@/app/page";
 import { getDatabase, getPage, getPageContent } from "@/lib/notion/notion";
 import { FaHeart } from "react-icons/fa";
-import ReactMarkdown from "react-markdown";
-import React from "react";
+import ReactMarkdown, { ExtraProps } from "react-markdown";
 import { Button } from "@/components/ui/button";
 import { n2blog } from "@/lib/notion/nameConvert";
 import { saveImageIfNeed } from "@/lib/aws/aws";
@@ -14,7 +13,13 @@ import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import "katex/dist/katex.min.css";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import {
+  okaidia,
+  tomorrow,
+} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Link from "next/link";
+import React, { ClassAttributes, HTMLAttributes } from "react";
 
 export async function generateStaticParams() {
   const blogDatabase = await getDatabase(blogDatabaseId);
@@ -95,10 +100,10 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
                 h3: ({ node, ...props }) => (
                   <h4 {...props} id={node?.position?.start.line.toString()} />
                 ),
+                pre: Pre,
               }}
-            >
-              {blogContent.parent}
-            </ReactMarkdown>
+              children={blogContent.parent}
+            />
           </div>
         </div>
         <div className="w-1/4 flex-none bg-white min-h-64 h-full rounded-l-2xl rounded-tr-2xl p-4 hidden sm:block">
@@ -146,5 +151,49 @@ const h2AnkerLink = ({ node, ...props }: any) => {
         -{props.children}
       </Link>
     </li>
+  );
+};
+
+const Pre = ({
+  children,
+  ...props
+}: ClassAttributes<HTMLPreElement> &
+  HTMLAttributes<HTMLPreElement> &
+  ExtraProps) => {
+  if (!children || typeof children !== "object") {
+    return <code {...props}>{children}</code>;
+  }
+  const childType = "type" in children ? children.type : "";
+  if (childType !== "code") {
+    return <code {...props}>{children}</code>;
+  }
+
+  const childProps = "props" in children ? children.props : {};
+  const { className, children: code } = childProps;
+  const language = className?.replace("language-", "");
+
+  return (
+    <SyntaxHighlighter
+      style={tomorrow}
+      language={language}
+      children={String(code).replace(/\n$/, "")}
+    />
+  );
+};
+
+const CodeBlock = (props: any) => {
+  const { inline, children, className } = props;
+  console.dir(props, { depth: null });
+  if (inline) {
+    return <code>{children}</code>;
+  }
+  const match = /language-(\w+)/.exec(className || "");
+  const lang = match && match[1] ? match[1] : "";
+  return (
+    <SyntaxHighlighter
+      style={okaidia}
+      language={lang}
+      children={String(children).replace(/\n$/, "")}
+    />
   );
 };

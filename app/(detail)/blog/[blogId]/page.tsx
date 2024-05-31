@@ -75,16 +75,16 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
         >
           <FaHeart className="text-red-400" />
         </MotionButton>
-        <div className="bg-white rounded-l-2xl rounded-tr-2xl p-4 grow w-ful">
+        <div className="bg-white rounded-l-2xl rounded-tr-2xl p-4 grow w-full">
           <div className="h-64 mb-8 w-full">
             <NextImage src={blog.image[0]} alt={blog.title} className="" />
           </div>
           <Separator />
-          <div className="py-10 lg:py-10">
+          <div className="py-10 lg:py-10 w-full">
             <ReactMarkdown
               remarkPlugins={[remarkGfm, remarkMath]}
               rehypePlugins={[rehypeKatex]}
-              className="markdown break-words"
+              className="markdown break-words w-full"
               components={{
                 h1: ({ node, ...props }) => (
                   <h2 {...props} id={node?.position?.start.line.toString()} />

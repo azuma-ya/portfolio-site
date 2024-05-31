@@ -204,6 +204,10 @@
   @apply bg-gray-100 !important;
 }
 
+.katex-display {
+  @apply overflow-x-auto overflow-y-hidden hover:scrollbar-thumb-secondary lg:scrollbar-thin;
+}
+
 @layer utilities {
   .hidden-scrollbar {
     -ms-overflow-style: none; /* IE, Edge 対応 */

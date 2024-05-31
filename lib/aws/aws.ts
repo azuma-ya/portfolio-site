@@ -3,7 +3,6 @@ import {
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
-import { createPresignedPost } from "@aws-sdk/s3-presigned-post";
 import { Blob } from "buffer";
 
 export const client = new S3Client({

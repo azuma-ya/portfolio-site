@@ -1,5 +1,7 @@
-import Image from "next/image";
 import { FC } from "react";
+
+import Image from "next/image";
+
 import { twMerge } from "tailwind-merge";
 
 type NextImageProps = {
@@ -10,7 +12,7 @@ type NextImageProps = {
 
 export const NextImage: FC<NextImageProps> = ({ src, alt, className }) => {
   return (
-    <div className={"relative h-full w-full"}>
+    <div className={"relative size-full"}>
       <Image
         className={twMerge("object-cover", className)}
         src={src}

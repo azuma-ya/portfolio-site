@@ -1,5 +1,11 @@
 "use client";
 
+import React, { useState } from "react";
+
+import Link from "next/link";
+
+import { Check } from "lucide-react";
+
 import { MotionDiv } from "@/app/_components/ui-elements/Motion/MotionComponents";
 import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
 import { Blog } from "@/app/_types/blog";
@@ -21,9 +27,7 @@ import {
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Toggle } from "@/components/ui/toggle";
 import { cn } from "@/lib/utils";
-import { Check, Plus } from "lucide-react";
-import Link from "next/link";
-import React, { useState } from "react";
+
 
 export interface BlogPresentationProps {
   blogs: Blog[];
@@ -39,7 +43,7 @@ const BlogPresentation = ({ blogs, skills }: BlogPresentationProps) => {
   return (
     <div className="container">
       <ScrollArea className="my-8">
-        <div className="flex my-4 gap-4 max-w-6xl mx-auto">
+        <div className="mx-auto my-4 flex max-w-6xl gap-4">
           {selectedSkills.map((skill, index) => (
             <MotionDiv
               key={index}
@@ -59,8 +63,8 @@ const BlogPresentation = ({ blogs, skills }: BlogPresentationProps) => {
                     selectedSkills.map((selectedSkill) =>
                       selectedSkill.id === skill.id
                         ? { ...selectedSkill, toggle: toggle }
-                        : selectedSkill
-                    )
+                        : selectedSkill,
+                    ),
                   )
                 }
               >
@@ -101,14 +105,14 @@ const BlogPresentation = ({ blogs, skills }: BlogPresentationProps) => {
                           onSelect={(currentValue) => {
                             if (
                               !selectedSkills.find(
-                                (skill) => skill.title === currentValue
+                                (skill) => skill.title === currentValue,
                               )
                             ) {
                               setSelectedSkills([
                                 ...selectedSkills,
                                 {
                                   ...(skills.find(
-                                    (skill) => skill.title === currentValue
+                                    (skill) => skill.title === currentValue,
                                   ) as Skill),
                                   toggle: true,
                                 },
@@ -117,8 +121,8 @@ const BlogPresentation = ({ blogs, skills }: BlogPresentationProps) => {
                               setSelectedSkills(
                                 selectedSkills.filter(
                                   (selectedSkill) =>
-                                    selectedSkill.title !== currentValue
-                                )
+                                    selectedSkill.title !== currentValue,
+                                ),
                               );
                             }
                             setOpen(false);
@@ -131,7 +135,7 @@ const BlogPresentation = ({ blogs, skills }: BlogPresentationProps) => {
                                 .map((skill) => skill.title)
                                 .includes(skill.title)
                                 ? "opacity-100"
-                                : "opacity-0"
+                                : "opacity-0",
                             )}
                           />
                           {skill.title}
@@ -147,7 +151,7 @@ const BlogPresentation = ({ blogs, skills }: BlogPresentationProps) => {
 
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
-      <div className="max-w-6xl mx-auto mb-32 grid sm:grid-cols-2 gap-8 grid-cols-1">
+      <div className="mx-auto mb-32 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2">
         {blogs
           .filter(
             (blog) =>
@@ -157,13 +161,13 @@ const BlogPresentation = ({ blogs, skills }: BlogPresentationProps) => {
                   .some((selectedSkill) =>
                     blog.skills
                       .map((skill: any) => skill.id)
-                      .includes(selectedSkill.id)
+                      .includes(selectedSkill.id),
                   )) ||
-              selectedSkills.length === 0
+              selectedSkills.length === 0,
           )
           .map((blog, index) => (
             <Link href={`/blog/${blog.id}`} key={index} className="flex gap-4">
-              <div className="w-32 h-32 flex-none rounded-xl overflow-hidden">
+              <div className="size-32 flex-none overflow-hidden rounded-xl">
                 <NextImage src={blog.image[0]} alt={blog.description} />
               </div>
               <div className="space-y-2">

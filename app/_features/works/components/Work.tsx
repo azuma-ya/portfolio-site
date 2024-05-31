@@ -1,9 +1,12 @@
-import Link from "next/link";
 import React from "react";
-import { NextImage } from "../../../_components/ui-elements/iamge/NextImage";
-import { Work as WorkType } from "@/app/_types/work";
+
+import Link from "next/link";
+
 import { twMerge } from "tailwind-merge";
+
 import { MotionDiv } from "@/app/_components/ui-elements/Motion/MotionComponents";
+import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
+import { Work as WorkType } from "@/app/_types/work";
 
 export interface WorkProps {
   work: WorkType;
@@ -33,13 +36,13 @@ const Work = ({ work, className }: WorkProps) => {
           <NextImage
             src={work.image[0]}
             alt="image"
-            className="hover:brightness-75 duration-200"
+            className="duration-200 hover:brightness-75"
           />
         </div>
         <p className="text-primary">
           {work.createdAt.toLocaleDateString("ja-JP")}
         </p>
-        <h3 className="text-2xl text-end font-semibold">{work.title}</h3>
+        <h3 className="text-end text-2xl font-semibold">{work.title}</h3>
       </MotionDiv>
     </Link>
   );

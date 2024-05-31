@@ -1,9 +1,10 @@
+import { Blob } from "buffer";
+
 import {
   ListObjectsCommand,
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
-import { Blob } from "buffer";
 
 export const client = new S3Client({
   region: process.env.AWS_BUCKET_REGION,
@@ -54,7 +55,7 @@ const isImageExist = async (fileName: string) => {
     new ListObjectsCommand({
       Bucket: process.env.AWS_BUCKET_NAME as string,
       Prefix: fileName,
-    })
+    }),
   );
   return result.Contents?.length ? true : false;
 };

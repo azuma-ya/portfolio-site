@@ -1,7 +1,9 @@
 "use client";
 
-import { useScroll, useSpring } from "framer-motion";
 import React from "react";
+
+import { useScroll, useSpring } from "framer-motion";
+
 import { MotionDiv } from "../ui-elements/Motion/MotionComponents";
 
 const ScrollLayout = ({ children }: { children: React.ReactNode }) => {
@@ -14,7 +16,7 @@ const ScrollLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <MotionDiv
-        className="fixed top-0 left-0 right-0 h-2 bg-secondary z-50 origin-left"
+        className="fixed inset-x-0 top-0 z-50 h-2 origin-left bg-secondary"
         style={{ scaleX }}
       />
       {children}

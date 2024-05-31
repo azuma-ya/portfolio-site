@@ -1,6 +1,10 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import React from "react";
+
+import Link from "next/link";
+
+import { ChevronRight } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -12,19 +16,20 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
-import { ChevronRight } from "lucide-react";
+
+
 import { MotionButton } from "../../ui-elements/Motion/MotionComponents";
 
 const Header = () => {
   return (
-    <header className="py-8 backdrop-blur-sm fixed z-40 w-full bg-accent/50 border-b-2">
-      <div className="flex items-center justify-between container">
+    <header className="fixed z-40 w-full border-b-2 bg-accent/50 py-8 backdrop-blur-sm">
+      <div className="container flex items-center justify-between">
         <Link href="/">
           <h1 className="text-4xl font-bold">
             <span className="text-primary">A</span>zuma-ya
           </h1>
         </Link>
-        <div className="gap-12 hidden md:flex">
+        <div className="hidden gap-12 md:flex">
           <div className="flex gap-4">
             <Button variant="ghost" size="sm" asChild>
               <Link href="#works">WORKS</Link>
@@ -53,7 +58,7 @@ const Header = () => {
         <Drawer direction={"left"}>
           <DrawerTrigger asChild className="md:hidden">
             <Button variant="outline" size="icon">
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="size-4" />
             </Button>
           </DrawerTrigger>
           <DrawerContent className="h-full w-2/3 bg-card">
@@ -64,7 +69,7 @@ const Header = () => {
               </DrawerDescription>
             </DrawerHeader>
             <Separator />
-            <div className="flex flex-col h-full mt-8 self-center">
+            <div className="mt-8 flex h-full flex-col self-center">
               <DrawerClose asChild>
                 <Button variant="ghost" size="sm" asChild className="">
                   <Link href="#works">WORKS</Link>

@@ -1,10 +1,12 @@
 import React from "react";
-import SectionLayout from "../../../_components/layouts/section/SectionLayout";
-import { Work as WorkType } from "@/app/_types/work";
-import { NextImage } from "../../../_components/ui-elements/iamge/NextImage";
-import Link from "next/link";
-import Work from "./Work";
+
 import { MotionUl } from "@/app/_components/ui-elements/Motion/MotionComponents";
+import { Work as WorkType } from "@/app/_types/work";
+
+import Work from "./Work";
+import SectionLayout from "../../../_components/layouts/section/SectionLayout";
+
+
 
 export interface WorksProps {
   works: WorkType[];
@@ -14,7 +16,7 @@ const Works = async ({ works }: WorksProps) => {
   return (
     <SectionLayout id="works" title="WORKS">
       <MotionUl
-        className="grid gap-8 lg:grid-cols-3 sm:grid-cols-1"
+        className="grid gap-8 sm:grid-cols-1 lg:grid-cols-3"
         initial="hidden"
         whileInView="visible"
         variants={{

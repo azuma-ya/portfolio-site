@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import localFont from "next/font/local";
-import "./globals.css";
 import React from "react";
+
+import localFont from "next/font/local";
+
 import MotionWrapper from "./_components/layouts/MotionWrapper";
 import Footer from "./_components/layouts/footer/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from "next";
+
+import "./globals.css";
 
 const lineSeed = localFont({
   src: [
@@ -46,9 +47,9 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className="scroll-smooth scroll-pt-36">
+    <html lang="ja" className="scroll-pt-36 scroll-smooth">
       <body className={lineSeed.className + " flex flex-col min-h-screen"}>
-        <div className="flex-grow">
+        <div className="grow">
           <MotionWrapper>
             <div>
               {children}

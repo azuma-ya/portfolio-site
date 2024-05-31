@@ -1,19 +1,22 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import React from "react";
-import { NextImage } from "../../ui-elements/iamge/NextImage";
+
+import Link from "next/link";
+
+
 import icon from "@/public/icon.jpg";
+
+import { NextImage } from "../../ui-elements/iamge/NextImage";
 
 const DetailHeader = () => {
   return (
     <header className="bg-white py-8">
-      <div className="flex items-center justify-between container">
+      <div className="container flex items-center justify-between">
         <Link href="/">
           <h1 className="text-4xl font-bold">
             <span className="text-primary">A</span>zuma-ya
           </h1>
         </Link>
-        <div className="w-12 h-12 rounded-full overflow-hidden">
+        <div className="size-12 overflow-hidden rounded-full">
           <NextImage src={icon} alt="icon" />
         </div>
       </div>

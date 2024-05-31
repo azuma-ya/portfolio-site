@@ -1,24 +1,26 @@
 "use client";
 
-import SectionLayout from "@/app/_components/layouts/section/SectionLayout";
-import { Input } from "@/components/ui/input";
+
 import React, { useTransition } from "react";
-import { z } from "zod";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+
+import { MotionButton } from "@/app/_components/ui-elements/Motion/MotionComponents";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { sendMail } from "../action";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MotionButton } from "@/app/_components/ui-elements/Motion/MotionComponents";
+
+import { sendMail } from "../action";
 
 export const formSchema = z.object({
   subject: z
@@ -109,7 +111,7 @@ const ContactForm = () => {
                 <Textarea
                   placeholder="content"
                   {...field}
-                  className="resize-none h-48"
+                  className="h-48 resize-none"
                 />
               </FormControl>
               <FormMessage />
@@ -119,7 +121,7 @@ const ContactForm = () => {
         <MotionButton
           type="submit"
           disabled={isPending}
-          className="px-16 mx-auto block"
+          className="mx-auto block px-16"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           whileTap={{ scale: 0.9 }}

@@ -1,25 +1,29 @@
-import { MotionButton } from "@/app/_components/ui-elements/Motion/MotionComponents";
-import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
-import { Blog } from "@/app/_types/blog";
-import { blogDatabaseId } from "@/app/page";
-import { getDatabase, getPage, getPageContent } from "@/lib/notion/notion";
+import React, { ClassAttributes, HTMLAttributes } from "react";
+
+import Link from "next/link";
+
 import { FaHeart } from "react-icons/fa";
 import ReactMarkdown, { ExtraProps } from "react-markdown";
-import { Button } from "@/components/ui/button";
-import { n2blog } from "@/lib/notion/nameConvert";
-import { saveImageIfNeed } from "@/lib/aws/aws";
-import { Separator } from "@/components/ui/separator";
-import rehypeKatex from "rehype-katex";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
-import "katex/dist/katex.min.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   okaidia,
   tomorrow,
 } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import Link from "next/link";
-import React, { ClassAttributes, HTMLAttributes } from "react";
+import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+
+import { MotionButton } from "@/app/_components/ui-elements/Motion/MotionComponents";
+import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
+import { Blog } from "@/app/_types/blog";
+import { blogDatabaseId } from "@/app/page";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { saveImageIfNeed } from "@/lib/aws/aws";
+import { n2blog } from "@/lib/notion/nameConvert";
+import { getDatabase, getPage, getPageContent } from "@/lib/notion/notion";
+
+import "katex/dist/katex.min.css";
 
 export async function generateStaticParams() {
   const blogDatabase = await getDatabase(blogDatabaseId);
@@ -66,30 +70,30 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto mb-32">
-      <h1 className="text-4xl font-semibold my-32 text-center mx-4">
+    <div className="mx-auto mb-32 max-w-7xl">
+      <h1 className="mx-4 my-32 text-center text-4xl font-semibold">
         {blog.title}
       </h1>
-      <div className="flex gap-4 w-full">
+      <div className="flex w-full gap-4">
         <MotionButton
           size="icon"
           variant="ghost"
-          className="flex-none bg-white sm:flex hidden"
+          className="hidden flex-none bg-white sm:flex"
           whileHover={{ scale: 1.3 }}
           whileTap={{ scale: 0.9 }}
         >
           <FaHeart className="text-red-400" />
         </MotionButton>
-        <div className="bg-white rounded-l-2xl rounded-tr-2xl p-4 grow w-full">
-          <div className="h-64 mb-8 w-full">
+        <div className="w-full grow rounded-l-2xl rounded-tr-2xl bg-white p-4">
+          <div className="mb-8 h-64 w-full">
             <NextImage src={blog.image[0]} alt={blog.title} className="" />
           </div>
           <Separator />
-          <div className="py-10 lg:py-10 w-full">
+          <div className="w-full py-10 lg:py-10">
             <ReactMarkdown
               remarkPlugins={[remarkGfm, remarkMath]}
               rehypePlugins={[rehypeKatex]}
-              className="markdown break-words w-full"
+              className="markdown w-full break-words"
               components={{
                 h1: ({ node, ...props }) => (
                   <h2 {...props} id={node?.position?.start.line.toString()} />
@@ -107,8 +111,8 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
             </ReactMarkdown>
           </div>
         </div>
-        <div className="w-1/4 flex-none bg-white min-h-64 h-full rounded-l-2xl rounded-tr-2xl p-4 hidden sm:block">
-          <p className="font-semibold py-2">目次</p>
+        <div className="hidden h-full min-h-64 w-1/4 flex-none rounded-l-2xl rounded-tr-2xl bg-white p-4 sm:block">
+          <p className="py-2 font-semibold">目次</p>
           <ul>
             {
               <ReactMarkdown

@@ -1,10 +1,11 @@
+import React from "react";
+
 import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
 import { Artwork } from "@/app/_types/artworks";
 import { artworkDatabaseId } from "@/app/page";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { n2artwork } from "@/lib/notion/nameConvert";
 import { getDatabase, getPage } from "@/lib/notion/notion";
-import React from "react";
 
 export async function generateStaticParams() {
   const artworkDatabase = await getDatabase(artworkDatabaseId);
@@ -25,15 +26,15 @@ const ArtworkModal = async ({ params }: ArtworkModalProps) => {
 
   return (
     <Dialog defaultOpen>
-      <DialogContent className="sm:max-w-4xl h-2/3 flex flex-col">
-        <DialogHeader className="text-2xl font-semibold ms-8 my-4">
+      <DialogContent className="flex h-2/3 flex-col sm:max-w-4xl">
+        <DialogHeader className="my-4 ms-8 text-2xl font-semibold">
           {artwork.title}
         </DialogHeader>
-        <div className="grow flex flex-col">
+        <div className="flex grow flex-col">
           <div className="grow">
             <NextImage src={artwork.image[0]} alt={artwork.title} />
           </div>
-          <div className="px-8 py-2 flex justify-between">
+          <div className="flex justify-between px-8 py-2">
             <p className="">{artwork.description}</p>
             <p className="">{artwork.createdAt.toLocaleDateString("ja-JP")}</p>
           </div>

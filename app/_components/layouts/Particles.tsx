@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
+
+import { loadAll } from "@tsparticles/all";
 import {
   type Container,
   type ISourceOptions,
   MoveDirection,
   OutMode,
 } from "@tsparticles/engine";
-import { loadAll } from "@tsparticles/all";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
 
 export default function HeroParticles() {
   const [init, setInit] = useState(false);

@@ -1,21 +1,24 @@
-import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
+import React from "react";
+
+import Image from "next/image";
+import Link from "next/link";
+
 import { Artwork } from "@/app/_types/artworks";
 import { artworkDatabaseId } from "@/app/page";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { n2artwork } from "@/lib/notion/nameConvert";
 import { getDatabase } from "@/lib/notion/notion";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+
+
 
 const ArtWorksPage = async () => {
   const artworkDatabase = (await getDatabase(artworkDatabaseId)) as any;
   const artworks: Artwork[] = await Promise.all(
-    artworkDatabase.map(async (artwork: any) => await n2artwork(artwork))
+    artworkDatabase.map(async (artwork: any) => await n2artwork(artwork)),
   );
 
   return (
-    <div className="my-32 max-w-6xl mx-auto grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 container">
+    <div className="container mx-auto my-32 grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
       {artworks.map((artwork, index) => (
         <Link href={`/artworks/${artwork.id}`} key={index}>
           <AspectRatio ratio={1 / 1}>

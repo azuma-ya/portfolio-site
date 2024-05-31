@@ -1,8 +1,10 @@
 "use client";
 
-import { Carousel } from "@/components/ui/carousel";
 import React from "react";
+
 import Autoplay from "embla-carousel-autoplay";
+
+import { Carousel } from "@/components/ui/carousel";
 
 const AutoCarousel = ({
   children,

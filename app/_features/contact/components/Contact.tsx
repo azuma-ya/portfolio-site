@@ -1,11 +1,13 @@
-import SectionLayout from "@/app/_components/layouts/section/SectionLayout";
 import React from "react";
+
+import SectionLayout from "@/app/_components/layouts/section/SectionLayout";
+
 import ContactForm from "./ContactForm";
 
 const Contact = () => {
   return (
     <SectionLayout id="contact" title="CONTACT">
-      <div className="max-w-4xl mx-auto z-50">
+      <div className="z-50 mx-auto max-w-4xl">
         <ContactForm />
       </div>
     </SectionLayout>

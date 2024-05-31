@@ -1,21 +1,22 @@
-import { getDatabase } from "@/lib/notion/notion";
-import BlogTopic from "./_features/blog/components/BlogTopic";
-import { Blog } from "./_types/blog";
-import Works from "./_features/works/components/Works";
-import { Work } from "./_types/work";
-import Header from "./_components/layouts/header/Header";
-import Skills from "./_features/skills/components/Skills";
-import { Skill } from "./_types/skill";
-import Artworks from "./_features/artworks/components/Artworks";
-import { Artwork } from "./_types/artworks";
-import BlogPicUp from "./_features/blog/components/BlogPicUp";
-import ScrollLayout from "./_components/layouts/ScrollLayout";
-import Contact from "./_features/contact/components/Contact";
-import { MotionDiv } from "./_components/ui-elements/Motion/MotionComponents";
-import HeroParticles from "./_components/layouts/Particles";
 import { n2artwork, n2blog, n2skill, n2work } from "@/lib/notion/nameConvert";
+import { getDatabase } from "@/lib/notion/notion";
+
+import BackGround from "./_components/layouts/BackGround";
+import HeroParticles from "./_components/layouts/Particles";
+import ScrollLayout from "./_components/layouts/ScrollLayout";
+import Header from "./_components/layouts/header/Header";
 import FollowPointer from "./_components/ui-elements/Motion/FollowPointer";
-import Parallaxlayout from "./_components/layouts/ParallaxLayout";
+import { MotionDiv } from "./_components/ui-elements/Motion/MotionComponents";
+import Artworks from "./_features/artworks/components/Artworks";
+import BlogPicUp from "./_features/blog/components/BlogPicUp";
+import BlogTopic from "./_features/blog/components/BlogTopic";
+import Contact from "./_features/contact/components/Contact";
+import Skills from "./_features/skills/components/Skills";
+import Works from "./_features/works/components/Works";
+import { Artwork } from "./_types/artworks";
+import { Blog } from "./_types/blog";
+import { Skill } from "./_types/skill";
+import { Work } from "./_types/work";
 
 export const workDatabaseId = process.env.WORK_DATABASE_ID as string;
 export const skillDatabaseId = process.env.SKILL_DATABASE_ID as string;
@@ -42,17 +43,17 @@ export default async function Home() {
 
   return (
     <ScrollLayout>
-      <div className="bg-hero-pattern sm:bg-cover bg-contain bg-repeat-y ">
+      <div className="z-40">
         <Header />
         <FollowPointer />
-        <main className="container flex flex-col items-center md:gap-80 gap-40 py-8 md:py-28">
+        <main className="container flex flex-col items-center gap-40 py-8 md:gap-80 md:py-28">
           <HeroParticles />
           <BlogTopic blogs={blogs} />
           <section className="flex items-center gap-8">
             <div className="flex items-center gap-8">
               <div className="hidden sm:block">
                 <MotionDiv
-                  className="h-32 w-32 cursor-pointer bg-icon rounded-full bg-cover group"
+                  className="group size-32 cursor-pointer rounded-full bg-icon bg-cover"
                   drag
                   dragTransition={{
                     bounceStiffness: 600,
@@ -61,15 +62,15 @@ export default async function Home() {
                   dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
                   whileHover={{ scale: 1.1 }}
                 />
-                <p className="select-none text-center font-semibold text-accent-foreground italic group-hover:text-primary hover:text-primary duration-300 cursor-pointer">
+                <p className="cursor-pointer select-none text-center font-semibold italic text-accent-foreground duration-300 group-hover:text-primary hover:text-primary">
                   Welcom!
                 </p>
               </div>
               <div className="max-w-lg space-y-4">
                 <div className="flex items-center justify-around">
-                  <div className="sm:hidden block">
+                  <div className="block sm:hidden">
                     <MotionDiv
-                      className="h-16 w-16 cursor-pointer bg-icon rounded-full bg-cover group"
+                      className="group size-16 cursor-pointer rounded-full bg-icon bg-cover"
                       drag
                       dragTransition={{
                         bounceStiffness: 600,
@@ -83,7 +84,7 @@ export default async function Home() {
                       }}
                       whileHover={{ scale: 1.1 }}
                     />
-                    <p className="text-center text-sm font-semibold text-accent-foreground italic group-hover:text-primary hover:text-primary duration-300 cursor-pointer">
+                    <p className="cursor-pointer text-center text-sm font-semibold italic text-accent-foreground duration-300 group-hover:text-primary hover:text-primary">
                       Welcom!
                     </p>
                   </div>
@@ -130,7 +131,7 @@ export default async function Home() {
             </div>
           </section>
           <Works works={works} />
-          <div className="space-y-32 w-full">
+          <div className="w-full space-y-32">
             <Skills skills={skills} type="language" />
             <Skills skills={skills} type="library" />
             <Skills skills={skills} type="framework" />
@@ -140,6 +141,7 @@ export default async function Home() {
           <Contact />
         </main>
       </div>
+      <BackGround />
     </ScrollLayout>
   );
 }

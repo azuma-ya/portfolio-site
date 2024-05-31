@@ -1,3 +1,9 @@
+import React from "react";
+
+import Link from "next/link";
+
+import { ArrowRight } from "lucide-react";
+
 import SectionLayout from "@/app/_components/layouts/section/SectionLayout";
 import {
   MotionButton,
@@ -6,11 +12,8 @@ import {
 import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
 import AutoCarousel from "@/app/_components/ui-parts/AutoCarousel";
 import { Blog } from "@/app/_types/blog";
-import { Button } from "@/components/ui/button";
 import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import React from "react";
+
 
 export interface BlogPicUpProps {
   blogs: Blog[];
@@ -25,7 +28,7 @@ const BlogPicUp = ({ blogs }: BlogPicUpProps) => {
         <MotionButton
           asChild
           variant="outline"
-          className="h-14 w-14 border-primary"
+          className="size-14 border-primary"
           initial={{ scale: 0, rotate: 180 }}
           animate={{ rotate: 0, scale: 1 }}
           whileTap={{ scale: 0.9 }}
@@ -68,13 +71,13 @@ const BlogPicUp = ({ blogs }: BlogPicUpProps) => {
                     }}
                     viewport={{ once: true }}
                   >
-                    <div className=" lg:h-96 sm:h-80 h-48 overflow-hidden lg:rounded-l-[6rem] lg:rounded-tr-[6rem] md:rounded-l-[5rem] md:rounded-tr-[5rem] rounded-l-[4rem] rounded-tr-[4rem] border-2">
+                    <div className=" h-48 overflow-hidden rounded-l-[4rem] rounded-tr-[4rem] border-2 sm:h-80 md:rounded-l-[5rem] md:rounded-tr-[5rem] lg:h-96 lg:rounded-l-[6rem] lg:rounded-tr-[6rem]">
                       <NextImage src={blog.image[0]} alt={blog.title} />
                     </div>
                     <p className="">
                       {blog.createdAt?.toLocaleDateString("ja-JP")}
                     </p>
-                    <h3 className="sm:text-2xl text-xl font-semibold">
+                    <h3 className="text-xl font-semibold sm:text-2xl">
                       {blog.title}
                     </h3>
                   </MotionDiv>

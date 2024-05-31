@@ -2,6 +2,7 @@ import { Artwork } from "@/app/_types/artworks";
 import { Blog } from "@/app/_types/blog";
 import { Skill } from "@/app/_types/skill";
 import { Work } from "@/app/_types/work";
+
 import { saveImageIfNeed } from "../aws/aws";
 
 export const n2blog = async (blog: any): Promise<Blog> => ({
@@ -10,8 +11,8 @@ export const n2blog = async (blog: any): Promise<Blog> => ({
   description: blog.properties.Description.rich_text[0]?.plain_text ?? "null",
   image: await Promise.all(
     blog.properties.Image.files.map(
-      async (file: any) => await saveImageIfNeed(file)
-    )
+      async (file: any) => await saveImageIfNeed(file),
+    ),
   ),
   createdAt: new Date(blog.properties.CreatedAt?.date.start ?? undefined),
   skills: blog.properties.Skills.relation,
@@ -23,8 +24,8 @@ export const n2work = async (work: any): Promise<Work> => ({
   description: work.properties.Description.rich_text[0]?.plain_text ?? "null",
   image: await Promise.all(
     work.properties.Image.files.map(
-      async (file: any) => await saveImageIfNeed(file)
-    )
+      async (file: any) => await saveImageIfNeed(file),
+    ),
   ),
   createdAt: new Date(work.properties.CreatedAt?.date.start ?? undefined),
   appLink: work.properties.AppLink.url,
@@ -38,8 +39,8 @@ export const n2skill = async (skill: any): Promise<Skill> => ({
   description: skill.properties.Description.rich_text[0]?.plain_text ?? "null",
   image: await Promise.all(
     skill.properties.Image.files.map(
-      async (file: any) => await saveImageIfNeed(file)
-    )
+      async (file: any) => await saveImageIfNeed(file),
+    ),
   ),
   homepageLink: skill.properties.HomepageLink.url,
   type: skill.properties.Type.select.name,
@@ -52,8 +53,8 @@ export const n2artwork = async (artwork: any): Promise<Artwork> => ({
     artwork.properties.Description.rich_text[0]?.plain_text ?? "null",
   image: await Promise.all(
     artwork.properties.Image.files.map(
-      async (file: any) => await saveImageIfNeed(file)
-    )
+      async (file: any) => await saveImageIfNeed(file),
+    ),
   ),
   createdAt: new Date(artwork.properties.CreatedAt?.date.start ?? undefined),
 });

@@ -1,9 +1,10 @@
 "use server";
 
-import { z } from "zod";
-import { formSchema } from "./components/ContactForm";
 import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
+import { z } from "zod";
+
+import { formSchema } from "./components/ContactForm";
 
 export const sendMail = async (data: z.infer<typeof formSchema>) => {
   //   await new Promise((resolve) => setTimeout(resolve, 5000));

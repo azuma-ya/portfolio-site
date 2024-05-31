@@ -1,7 +1,9 @@
 "use client";
 
 import React from "react";
+
 import { motion } from "framer-motion";
+
 import { Button } from "@/components/ui/button";
 
 export interface MotionDivProps {
@@ -16,7 +18,7 @@ const MotionDivComponent = React.forwardRef<HTMLDivElement, MotionDivProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 
 MotionDivComponent.displayName = "MotionDivComponent";

@@ -1,3 +1,9 @@
+import React from "react";
+
+import Link from "next/link";
+
+import { ArrowRight } from "lucide-react";
+
 import SectionLayout from "@/app/_components/layouts/section/SectionLayout";
 import {
   MotionButton,
@@ -6,11 +12,8 @@ import {
 import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
 import AutoCarousel from "@/app/_components/ui-parts/AutoCarousel";
 import { Artwork } from "@/app/_types/artworks";
-import { Button } from "@/components/ui/button";
 import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import { ArrowRight, MoveRight } from "lucide-react";
-import Link from "next/link";
-import React from "react";
+
 
 export interface ArtworkProps {
   artworks: Artwork[];
@@ -25,7 +28,7 @@ const Artworks = ({ artworks }: ArtworkProps) => {
         <MotionButton
           asChild
           variant="outline"
-          className="h-14 w-14 border-primary"
+          className="size-14 border-primary"
           initial={{ scale: 0, rotate: 180 }}
           animate={{ rotate: 0, scale: 1 }}
           whileTap={{ scale: 0.9 }}
@@ -58,7 +61,7 @@ const Artworks = ({ artworks }: ArtworkProps) => {
               <CarouselItem className="sm:basis-1/3" key={index}>
                 <Link href={`/artworks/${artwork.id}`} className="group">
                   <MotionDiv
-                    className="relative w-full lg:h-96 sm:h-80 h-48 overflow-hidden lg:rounded-l-[6rem] lg:rounded-tr-[6rem] md:rounded-l-[5rem] md:rounded-tr-[5rem] rounded-l-[4rem] rounded-tr-[4rem]"
+                    className="relative h-48 w-full overflow-hidden rounded-l-[4rem] rounded-tr-[4rem] sm:h-80 md:rounded-l-[5rem] md:rounded-tr-[5rem] lg:h-96 lg:rounded-l-[6rem] lg:rounded-tr-[6rem]"
                     whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
                     transition={{ type: "spring", stiffness: 200, damping: 20 }}
                     whileTap={{ scale: 0.9 }}
@@ -68,10 +71,10 @@ const Artworks = ({ artworks }: ArtworkProps) => {
                     }}
                     viewport={{ once: true }}
                   >
-                    <p className="absolute z-50 bg-white rounded-l-[6rem] rounded-tr-[6rem] px-8 py-4 bottom-4 right-4 text-xl opacity-0 group-hover:opacity-100 duration-300">
+                    <p className="absolute bottom-4 right-4 z-50 rounded-l-[6rem] rounded-tr-[6rem] bg-white px-8 py-4 text-xl opacity-0 duration-300 group-hover:opacity-100">
                       {artwork.title}
                     </p>
-                    <div className="w-full h-full">
+                    <div className="size-full">
                       <NextImage src={artwork.image[0]} alt="image" />
                     </div>
                   </MotionDiv>

@@ -16,7 +16,7 @@ const ScrollLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <MotionDiv
-        className="fixed inset-x-0 top-0 z-50 h-2 origin-left bg-secondary"
+        className="fixed inset-x-0 top-0 z-50 h-2 origin-left bg-primary"
         style={{ scaleX }}
       />
       {children}

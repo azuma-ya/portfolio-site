@@ -1,7 +1,7 @@
 import React from "react";
-
 import localFont from "next/font/local";
 
+import { Toaster } from "@/components/ui/toaster";
 import MotionWrapper from "./_components/layouts/MotionWrapper";
 import Footer from "./_components/layouts/footer/Footer";
 
@@ -58,6 +58,7 @@ export default function RootLayout({
           </MotionWrapper>
         </div>
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

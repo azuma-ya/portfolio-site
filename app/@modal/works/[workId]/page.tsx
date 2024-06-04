@@ -35,7 +35,7 @@ const WorksModal = async ({ params }: WorksModalProps) => {
 
   return (
     <Dialog defaultOpen>
-      <DialogContent className="sm:max-w-4xl">
+      <DialogContent className="sm:max-w-4xl sm:max-h-[80%] sm:hidden-scrollbar h-2/3 overflow-auto">
         <DialogHeader className="my-4 ms-8">
           <h2 className="text-2xl font-semibold">
             <span className="text-primary">{work.title.substring(0, 1)}</span>
@@ -70,7 +70,7 @@ const WorksModal = async ({ params }: WorksModalProps) => {
           </p>
           <Separator />
           <ScrollArea className="w-full">
-            <ul className="flex gap-4 py-2">
+            <ul className="flex gap-4 py-2 text-nowrap mb-2">
               {skills
                 .filter((skill: Skill) =>
                   work.skills.map((skill: any) => skill.id).includes(skill.id)
@@ -78,7 +78,7 @@ const WorksModal = async ({ params }: WorksModalProps) => {
                 .map((skill: Skill, index: number) => (
                   <li
                     key={index}
-                    className="rounded-full border border-primary p-2 text-primary"
+                    className="rounded-full border border-primary p-2 text-primary sm:text-base text-xs"
                   >
                     {skill.title}
                   </li>

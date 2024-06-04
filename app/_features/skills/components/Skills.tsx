@@ -20,7 +20,7 @@ const Skills = async ({ skills, type }: SkillsProps) => {
   return (
     <SectionLayout id="skills" title="SKILLS" subtitle={type}>
       <MotionUl
-        className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-1 lg:grid-cols-2"
+        className="mx-auto grid max-w-6xl gap-6 sm:gap-12 sm:grid-cols-1 lg:grid-cols-2"
         initial="hidden"
         whileInView="visible"
         variants={{
@@ -41,7 +41,7 @@ const Skills = async ({ skills, type }: SkillsProps) => {
             <li key={index}>
               <Link href={`/skills/${skill.id}`}>
                 <MotionDiv
-                  className="group flex w-full items-center gap-12"
+                  className="group flex w-full items-center gap-6"
                   variants={{
                     visible: { opacity: 1, scale: 1 },
                     hidden: { opacity: 0, scale: 0 },

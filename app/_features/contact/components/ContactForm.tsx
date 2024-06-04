@@ -1,12 +1,10 @@
 "use client";
 
-
 import React, { useTransition } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 
 import { MotionButton } from "@/app/_components/ui-elements/Motion/MotionComponents";
 import {
@@ -21,22 +19,23 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 import { sendMail } from "../action";
+import { toast } from "@/components/ui/use-toast";
 
 export const formSchema = z.object({
   subject: z
     .string()
-    .min(1, { message: "件名を入力してください。" })
+    .min(1, { message: "件名を入力してください" })
     .max(20, { message: "20文字以内で入力してください" }),
   name: z
     .string()
-    .min(1, { message: "名前を入力してください。" })
+    .min(1, { message: "名前を入力してください" })
     .max(20, { message: "20文字以内で入力してください" }),
   email: z
-    .string({ required_error: "メールアドレスを入力してください。" })
-    .email({ message: "正しいメールアドレスを入力してください。" }),
+    .string({ required_error: "メールアドレスを入力してください" })
+    .email({ message: "正しいメールアドレスを入力してください" }),
   content: z
     .string()
-    .min(1, { message: "内容を入力してください。" })
+    .min(1, { message: "内容を入力してください" })
     .max(200, { message: "200文字以内で入力してください" }),
 });
 
@@ -57,6 +56,16 @@ const ContactForm = () => {
     startTransition(async () => {
       const res = await sendMail(data);
       console.log(res);
+      if (res.status === 200) {
+        toast({
+          title: "メールの送信に完了しました!",
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "メールの送信に失敗しました...",
+        });
+      }
     });
   };
   return (

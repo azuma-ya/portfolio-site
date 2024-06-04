@@ -131,7 +131,7 @@ export default async function Home() {
             </div>
           </section>
           <Works works={works} />
-          <div className="w-full sm:space-y-32 space-y-16">
+          <div className="w-full space-y-16 sm:space-y-32">
             <Skills skills={skills} type="language" />
             <Skills skills={skills} type="library" />
             <Skills skills={skills} type="framework" />

@@ -20,7 +20,7 @@ const Skills = async ({ skills, type }: SkillsProps) => {
   return (
     <SectionLayout id="skills" title="SKILLS" subtitle={type}>
       <MotionUl
-        className="mx-auto grid max-w-6xl gap-6 sm:gap-12 sm:grid-cols-1 lg:grid-cols-2"
+        className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-1 sm:gap-12 lg:grid-cols-2"
         initial="hidden"
         whileInView="visible"
         variants={{

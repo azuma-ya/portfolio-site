@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
@@ -31,7 +32,7 @@ const toastVariants = cva(
       variant: {
         default: "border bg-card text-foreground",
         destructive:
-          "destructive group border-destructive bg-destructive text-destructive-foreground",
+          "group border-destructive bg-destructive text-destructive-foreground",
       },
     },
     defaultVariants: {
@@ -83,7 +84,7 @@ const ToastClose = React.forwardRef<
     toast-close=""
     {...props}
   >
-    <X className="h-4 w-4" />
+    <X className="size-4" />
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;

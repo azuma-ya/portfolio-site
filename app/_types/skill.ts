@@ -7,4 +7,4 @@ export type Skill = {
   type: string;
 };
 
-export type SkillType = "language" | "library" | "framework";
+export type SkillType = "language" | "library" | "framework" | "hobby";

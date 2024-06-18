@@ -1,9 +1,10 @@
+import React from "react";
+
 import Skills from "@/app/_features/skills/components/Skills";
 import { Skill } from "@/app/_types/skill";
 import { skillDatabaseId } from "@/app/page";
 import { n2skill } from "@/lib/notion/nameConvert";
 import { getDatabase } from "@/lib/notion/notion";
-import React from "react";
 
 const HobbyPage = async () => {
   const skillDatabase = (await getDatabase(skillDatabaseId)) as any;

@@ -54,7 +54,7 @@ const Skills = async ({ skills, type }: SkillsProps) => {
                   <div className="size-24 flex-none rounded-2xl border-2 bg-white p-6">
                     <NextImage src={skill.image[0]} alt={skill.title} />
                   </div>
-                  <div className="grow space-y-4 rounded-l-2xl rounded-tr-2xl bg-accent/50 border-2 p-2 backdrop-blur-sm hover:bg-foreground/20 md:p-6">
+                  <div className="grow space-y-4 rounded-l-2xl rounded-tr-2xl border-2 bg-accent/50 p-2 backdrop-blur-sm hover:bg-foreground/20 md:p-6">
                     <h3 className="text-xl font-semibold">{skill.title}</h3>
                     <p>{skill.description}</p>
                   </div>

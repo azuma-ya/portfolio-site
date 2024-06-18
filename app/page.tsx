@@ -1,3 +1,6 @@
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 import { n2artwork, n2blog, n2skill, n2work } from "@/lib/notion/nameConvert";
 import { getDatabase } from "@/lib/notion/notion";
 
@@ -17,8 +20,6 @@ import { Artwork } from "./_types/artworks";
 import { Blog } from "./_types/blog";
 import { Skill } from "./_types/skill";
 import { Work } from "./_types/work";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 export const workDatabaseId = process.env.WORK_DATABASE_ID as string;
 export const skillDatabaseId = process.env.SKILL_DATABASE_ID as string;
@@ -137,7 +138,7 @@ export default async function Home() {
             <Skills skills={skills} type="language" />
             <Skills skills={skills} type="library" />
             <Skills skills={skills} type="framework" />
-            <div className="flex items-center justify-center w-full">
+            <div className="flex w-full items-center justify-center">
               <Button
                 variant="link"
                 className="text-xl font-light text-foreground decoration-primary"

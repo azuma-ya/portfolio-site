@@ -10,16 +10,16 @@ import { Button } from "@/components/ui/button";
 import { n2artwork, n2blog, n2skill, n2work } from "@/lib/notion/nameConvert";
 import { getDatabase } from "@/lib/notion/notion";
 
+import type { Artwork } from "../types/artworks";
+import type { Blog } from "../types/blog";
+import type { Skill } from "../types/skill";
+import type { Work } from "../types/work";
 import Artworks from "./_features/artworks/components/Artworks";
 import BlogPicUp from "./_features/blog/components/BlogPicUp";
 import BlogTopic from "./_features/blog/components/BlogTopic";
 import Contact from "./_features/contact/components/Contact";
 import Skills from "./_features/skills/components/Skills";
 import Works from "./_features/works/components/Works";
-import { Artwork } from "./_types/artworks";
-import { Blog } from "./_types/blog";
-import { Skill } from "./_types/skill";
-import { Work } from "./_types/work";
 
 export const workDatabaseId = process.env.WORK_DATABASE_ID as string;
 export const skillDatabaseId = process.env.SKILL_DATABASE_ID as string;
@@ -27,20 +27,24 @@ export const artworkDatabaseId = process.env.ARTWORK_DATABASE_ID as string;
 export const blogDatabaseId = process.env.BLOG_DATABASE_ID as string;
 
 export default async function Home() {
-  const workDatabase = (await getDatabase(workDatabaseId)) as any;
-  const skillDatabase = (await getDatabase(skillDatabaseId)) as any;
-  const artworkDatabase = (await getDatabase(artworkDatabaseId)) as any;
-  const blogDatabase = (await getDatabase(blogDatabaseId)) as any;
+  const workDatabase = await getDatabase(workDatabaseId);
+  const skillDatabase = await getDatabase(skillDatabaseId);
+  const artworkDatabase = await getDatabase(artworkDatabaseId);
+  const blogDatabase = await getDatabase(blogDatabaseId);
   const blogs: Blog[] = await Promise.all(
+    // eslint-disable-next-line
     blogDatabase.map(async (blog: any) => await n2blog(blog)),
   );
   const works: Work[] = await Promise.all(
+    // eslint-disable-next-line
     workDatabase.map(async (work: any) => await n2work(work)),
   );
   const skills: Skill[] = await Promise.all(
+    // eslint-disable-next-line
     skillDatabase.map(async (skill: any) => await n2skill(skill)),
   );
   const artworks: Artwork[] = await Promise.all(
+    // eslint-disable-next-line
     artworkDatabase.map(async (artwork: any) => await n2artwork(artwork)),
   );
 

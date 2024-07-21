@@ -4,8 +4,6 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-import { Blog } from "@/app/_types/blog";
-import { Skill } from "@/app/_types/skill";
 import { MotionDiv } from "@/components/ui-elements/Motion/MotionComponents";
 import { NextImage } from "@/components/ui-elements/iamge/NextImage";
 import { Button } from "@/components/ui/button";
@@ -25,6 +23,8 @@ import {
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Toggle } from "@/components/ui/toggle";
 import { cn } from "@/lib/utils";
+import type { Blog } from "@/types/blog";
+import type { Skill } from "@/types/skill";
 
 export interface BlogPresentationProps {
   blogs: Blog[];
@@ -59,7 +59,7 @@ const BlogPresentation = ({ blogs, skills }: BlogPresentationProps) => {
                   setSelectedSkills(
                     selectedSkills.map((selectedSkill) =>
                       selectedSkill.id === skill.id
-                        ? { ...selectedSkill, toggle: toggle }
+                        ? { ...selectedSkill, toggle }
                         : selectedSkill,
                     ),
                   )
@@ -157,6 +157,7 @@ const BlogPresentation = ({ blogs, skills }: BlogPresentationProps) => {
                   .filter((skill) => skill.toggle)
                   .some((selectedSkill) =>
                     blog.skills
+                      // eslint-disable-next-line
                       .map((skill: any) => skill.id)
                       .includes(selectedSkill.id),
                   )) ||

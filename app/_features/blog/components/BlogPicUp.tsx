@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-import { Blog } from "@/app/_types/blog";
 import SectionLayout from "@/components/layouts/section/SectionLayout";
 import {
   MotionButton,
@@ -10,6 +9,7 @@ import {
 import { NextImage } from "@/components/ui-elements/iamge/NextImage";
 import AutoCarousel from "@/components/ui-parts/AutoCarousel";
 import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import type { Blog } from "@/types/blog";
 
 export interface BlogPicUpProps {
   blogs: Blog[];

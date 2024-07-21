@@ -1,7 +1,7 @@
-import { Artwork } from "@/app/_types/artworks";
-import { Blog } from "@/app/_types/blog";
-import { Skill } from "@/app/_types/skill";
-import { Work } from "@/app/_types/work";
+import type { Artwork } from "@/types/artworks";
+import type { Blog } from "@/types/blog";
+import type { Skill } from "@/types/skill";
+import type { Work } from "@/types/work";
 
 import { saveImageIfNeed } from "../aws/aws";
 

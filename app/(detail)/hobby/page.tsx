@@ -1,12 +1,13 @@
 import Skills from "@/app/_features/skills/components/Skills";
-import { Skill } from "@/app/_types/skill";
 import { skillDatabaseId } from "@/app/page";
 import { n2skill } from "@/lib/notion/nameConvert";
 import { getDatabase } from "@/lib/notion/notion";
+import type { Skill } from "@/types/skill";
 
 const HobbyPage = async () => {
-  const skillDatabase = (await getDatabase(skillDatabaseId)) as any;
+  const skillDatabase = await getDatabase(skillDatabaseId);
   const skills: Skill[] = await Promise.all(
+    // eslint-disable-next-line
     skillDatabase.map(async (skill: any) => await n2skill(skill)),
   );
   return (

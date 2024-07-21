@@ -4,5 +4,5 @@ export type Blog = {
   description: string;
   image: string[];
   createdAt?: Date;
-  skills: any;
+  skills: any; // eslint-disable-line
 };

@@ -1,5 +1,3 @@
-import { Skill } from "@/app/_types/skill";
-import { Work } from "@/app/_types/work";
 import { skillDatabaseId, workDatabaseId } from "@/app/page";
 import { NextImage } from "@/components/ui-elements/iamge/NextImage";
 import AutoCarousel from "@/components/ui-parts/AutoCarousel";
@@ -9,6 +7,8 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { n2skill, n2work } from "@/lib/notion/nameConvert";
 import { getDatabase, getPage } from "@/lib/notion/notion";
+import type { Skill } from "@/types/skill";
+import type { Work } from "@/types/work";
 
 export async function generateStaticParams() {
   const workDatabase = await getDatabase(workDatabaseId);
@@ -24,10 +24,11 @@ export interface WorksModalProps {
 }
 
 const WorksModal = async ({ params }: WorksModalProps) => {
-  const workData = (await getPage(params.workId)) as any;
+  const workData = await getPage(params.workId);
   const work: Work = await n2work(workData);
-  const skillDatabase = (await getDatabase(skillDatabaseId)) as any;
+  const skillDatabase = await getDatabase(skillDatabaseId);
   const skills: Skill[] = await Promise.all(
+    // eslint-disable-next-line
     skillDatabase.map(async (skill: any) => await n2skill(skill)),
   );
 
@@ -71,6 +72,7 @@ const WorksModal = async ({ params }: WorksModalProps) => {
             <ul className="mb-2 flex gap-4 text-nowrap py-2">
               {skills
                 .filter((skill: Skill) =>
+                  // eslint-disable-next-line
                   work.skills.map((skill: any) => skill.id).includes(skill.id),
                 )
                 .map((skill: Skill, index: number) => (

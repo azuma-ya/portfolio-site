@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-import { Skill, SkillType } from "@/app/_types/skill";
 import SectionLayout from "@/components/layouts/section/SectionLayout";
 import {
   MotionDiv,
   MotionUl,
 } from "@/components/ui-elements/Motion/MotionComponents";
 import { NextImage } from "@/components/ui-elements/iamge/NextImage";
+import type { Skill, SkillType } from "@/types/skill";
 
 export interface SkillsProps {
   skills: Skill[];

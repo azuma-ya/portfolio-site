@@ -19,7 +19,7 @@ const AutoCarousel = ({
       className={className}
       plugins={[
         Autoplay({
-          delay: delay,
+          delay,
         }),
       ]}
       opts={{

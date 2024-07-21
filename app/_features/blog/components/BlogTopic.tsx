@@ -1,11 +1,11 @@
 import Link from "next/link";
 
-import { Blog } from "@/app/_types/blog";
 import {
   MotionButton,
   MotionDiv,
 } from "@/components/ui-elements/Motion/MotionComponents";
 import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import type { Blog } from "@/types/blog";
 
 import { NextImage } from "../../../../components/ui-elements/iamge/NextImage";
 import AutoCarousel from "../../../../components/ui-parts/AutoCarousel";

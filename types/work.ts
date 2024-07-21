@@ -5,6 +5,6 @@ export type Work = {
   description: string;
   appLink: string;
   githubLink: string;
-  skills: any;
+  skills: any; // eslint-disable-line
   createdAt: Date;
 };

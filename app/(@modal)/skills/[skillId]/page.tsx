@@ -1,6 +1,4 @@
 import Work from "@/app/_features/works/components/Work";
-import { Skill } from "@/app/_types/skill";
-import { Work as WorkType } from "@/app/_types/work";
 import { skillDatabaseId, workDatabaseId } from "@/app/page";
 import {
   Carousel,
@@ -11,6 +9,8 @@ import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { n2skill, n2work } from "@/lib/notion/nameConvert";
 import { getDatabase, getPage } from "@/lib/notion/notion";
+import type { Skill } from "@/types/skill";
+import type { Work as WorkType } from "@/types/work";
 
 export async function generateStaticParams() {
   const skillDatabase = await getDatabase(skillDatabaseId);
@@ -26,10 +26,11 @@ export interface SkillsModalProps {
 }
 
 const SkillsModal = async ({ params }: SkillsModalProps) => {
-  const skillData = (await getPage(params.skillId)) as any;
+  const skillData = await getPage(params.skillId);
   const skill: Skill = await n2skill(skillData);
-  const workDatabase = (await getDatabase(workDatabaseId)) as any;
+  const workDatabase = await getDatabase(workDatabaseId);
   const works: WorkType[] = await Promise.all(
+    // eslint-disable-next-line
     workDatabase.map(async (work: any) => await n2work(work)),
   );
 
@@ -54,6 +55,7 @@ const SkillsModal = async ({ params }: SkillsModalProps) => {
           <CarouselContent className="m-4">
             {works
               .filter((work) =>
+                // eslint-disable-next-line
                 work.skills.map((skill: any) => skill.id).includes(skill.id),
               )
               .map((work, index) => (

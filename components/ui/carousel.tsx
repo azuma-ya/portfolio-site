@@ -125,7 +125,7 @@ const Carousel = React.forwardRef<
       <CarouselContext.Provider
         value={{
           carouselRef,
-          api: api,
+          api,
           opts,
           orientation:
             orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
@@ -254,10 +254,10 @@ const CarouselNext = React.forwardRef<
 CarouselNext.displayName = "CarouselNext";
 
 export {
-  type CarouselApi,
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
   CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
 };

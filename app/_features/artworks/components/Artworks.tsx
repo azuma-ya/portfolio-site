@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-import { Artwork } from "@/app/_types/artworks";
 import SectionLayout from "@/components/layouts/section/SectionLayout";
 import {
   MotionButton,
@@ -10,6 +9,7 @@ import {
 import { NextImage } from "@/components/ui-elements/iamge/NextImage";
 import AutoCarousel from "@/components/ui-parts/AutoCarousel";
 import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import type { Artwork } from "@/types/artworks";
 
 export interface ArtworkProps {
   artworks: Artwork[];

@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Artwork } from "@/app/_types/artworks";
 import { artworkDatabaseId } from "@/app/page";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { n2artwork } from "@/lib/notion/nameConvert";
 import { getDatabase } from "@/lib/notion/notion";
+import type { Artwork } from "@/types/artworks";
 
 const ArtWorksPage = async () => {
-  const artworkDatabase = (await getDatabase(artworkDatabaseId)) as any;
+  const artworkDatabase = await getDatabase(artworkDatabaseId);
   const artworks: Artwork[] = await Promise.all(
+    // eslint-disable-next-line
     artworkDatabase.map(async (artwork: any) => await n2artwork(artwork)),
   );
 

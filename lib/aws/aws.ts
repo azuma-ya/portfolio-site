@@ -1,4 +1,4 @@
-import { Blob } from "buffer";
+import type { Blob } from "buffer";
 
 import {
   ListObjectsCommand,
@@ -14,6 +14,7 @@ export const client = new S3Client({
   },
 });
 
+// eslint-disable-next-line
 export const saveImageIfNeed = async (file: any): Promise<string> => {
   const fileName = file.name.replaceAll(" ", "_");
   if (!(await isImageExist(fileName))) {

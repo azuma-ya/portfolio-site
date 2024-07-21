@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 
-import { Work as WorkType } from "@/app/_types/work";
 import { MotionDiv } from "@/components/ui-elements/Motion/MotionComponents";
 import { NextImage } from "@/components/ui-elements/iamge/NextImage";
+import type { Work as WorkType } from "@/types/work";
 
 export interface WorkProps {
   work: WorkType;

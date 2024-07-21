@@ -40,10 +40,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal,
+  // modal,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
+  // modal: React.ReactNode;
 }>) {
   return (
     <html lang="ja" className="scroll-pt-36 scroll-smooth">
@@ -52,7 +52,7 @@ export default function RootLayout({
           <MotionWrapper>
             <div>
               {children}
-              {modal}
+              {/* {modal} */}
             </div>
           </MotionWrapper>
         </div>

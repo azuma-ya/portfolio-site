@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ClassAttributes, HTMLAttributes } from "react";
+import type { ClassAttributes, HTMLAttributes } from "react";
 import { FaHeart } from "react-icons/fa";
-import ReactMarkdown, { ExtraProps } from "react-markdown";
+import type { ExtraProps } from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   okaidia,
@@ -11,7 +12,6 @@ import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 
-import { Blog } from "@/app/_types/blog";
 import { blogDatabaseId } from "@/app/page";
 import { MotionButton } from "@/components/ui-elements/Motion/MotionComponents";
 import { NextImage } from "@/components/ui-elements/iamge/NextImage";
@@ -20,6 +20,7 @@ import { Separator } from "@/components/ui/separator";
 import { saveImageIfNeed } from "@/lib/aws/aws";
 import { n2blog } from "@/lib/notion/nameConvert";
 import { getDatabase, getPage, getPageContent } from "@/lib/notion/notion";
+import type { Blog } from "@/types/blog";
 
 import "katex/dist/katex.min.css";
 
@@ -37,8 +38,9 @@ export interface BlogDetailPageProps {
 }
 
 const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
-  const blogData = (await getPage(params.blogId)) as any;
+  const blogData = await getPage(params.blogId);
   const blog: Blog = await n2blog(blogData);
+  // eslint-disable-next-line
   const blogContent: any = await getPageContent(params.blogId);
 
   const images = blogContent.parent
@@ -46,6 +48,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
     ?.map((imageUrl: string) =>
       imageUrl.match(/https?:\/\/[\w!?/+\-_~;.,*&@#$%()='[\]]+(?<!\))/),
     )
+    // eslint-disable-next-line
     .map((image: any) => ({
       name: decodeURI(image[0].match(/[^\/]*?(\.jpeg|\.jpg|\.png|\.gif)/)[0]),
       file: { url: decodeURI(image[0]) },
@@ -53,6 +56,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
 
   if (!!images) {
     const savedImages = await Promise.all(
+      // eslint-disable-next-line
       images.map(async (image: any) => await saveImageIfNeed(image)),
     );
 
@@ -112,17 +116,15 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
         <div className="hidden h-full min-h-64 w-1/4 flex-none rounded-l-2xl rounded-tr-2xl bg-white p-4 sm:block">
           <p className="py-2 font-semibold">目次</p>
           <ul>
-            {
-              <ReactMarkdown
-                allowedElements={["h1", "h2"]}
-                components={{
-                  h1: h1AnkerLink,
-                  h2: h2AnkerLink,
-                }}
-              >
-                {blogContent.parent}
-              </ReactMarkdown>
-            }
+            <ReactMarkdown
+              allowedElements={["h1", "h2"]}
+              components={{
+                h1: h1AnkerLink,
+                h2: h2AnkerLink,
+              }}
+            >
+              {blogContent.parent}
+            </ReactMarkdown>
           </ul>
         </div>
       </div>
@@ -132,6 +134,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
 
 export default BlogDetailPage;
 
+// eslint-disable-next-line
 const h1AnkerLink = ({ node, ...props }: any) => {
   return (
     <li>
@@ -144,6 +147,7 @@ const h1AnkerLink = ({ node, ...props }: any) => {
   );
 };
 
+// eslint-disable-next-line
 const h2AnkerLink = ({ node, ...props }: any) => {
   return (
     <li>
@@ -182,6 +186,7 @@ const Pre = ({
   );
 };
 
+// eslint-disable-next-line
 const CodeBlock = (props: any) => {
   const { inline, children, className } = props;
   console.dir(props, { depth: null });

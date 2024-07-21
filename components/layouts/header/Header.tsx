@@ -51,7 +51,7 @@ const Header = () => {
             <Link href="#contact">CONTACT</Link>
           </MotionButton>
         </div>
-        <Drawer direction={"left"}>
+        <Drawer direction="left">
           <DrawerTrigger asChild className="md:hidden">
             <Button variant="outline" size="icon">
               <ChevronRight className="size-4" />

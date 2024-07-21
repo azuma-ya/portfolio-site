@@ -2,7 +2,8 @@
 
 import React from "react";
 
-import { MotionValue, useScroll, useTransform } from "framer-motion";
+import type { MotionValue } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
 import { MotionDiv } from "../ui-elements/Motion/MotionComponents";

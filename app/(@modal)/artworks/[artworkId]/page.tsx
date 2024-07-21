@@ -1,9 +1,9 @@
-import { Artwork } from "@/app/_types/artworks";
 import { artworkDatabaseId } from "@/app/page";
 import { NextImage } from "@/components/ui-elements/iamge/NextImage";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { n2artwork } from "@/lib/notion/nameConvert";
 import { getDatabase, getPage } from "@/lib/notion/notion";
+import type { Artwork } from "@/types/artworks";
 
 export async function generateStaticParams() {
   const artworkDatabase = await getDatabase(artworkDatabaseId);
@@ -19,7 +19,7 @@ export interface ArtworkModalProps {
 }
 
 const ArtworkModal = async ({ params }: ArtworkModalProps) => {
-  const artworkData = (await getPage(params.artworkId)) as any;
+  const artworkData = await getPage(params.artworkId);
   const artwork: Artwork = await n2artwork(artworkData);
 
   return (

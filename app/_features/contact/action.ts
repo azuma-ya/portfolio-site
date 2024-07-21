@@ -1,14 +1,14 @@
 "use server";
 
 import nodemailer from "nodemailer";
-import Mail from "nodemailer/lib/mailer";
-import { z } from "zod";
+import type Mail from "nodemailer/lib/mailer";
+import type { z } from "zod";
 
-import { formSchema } from "./components/ContactForm";
+import type { formSchema } from "./components/ContactForm";
 
 export const sendMail = async (data: z.infer<typeof formSchema>) => {
   //   await new Promise((resolve) => setTimeout(resolve, 5000));
-  const { subject, name, email, content } = data;
+  const { subject, email, content } = data;
 
   const transport = nodemailer.createTransport({
     service: "gmail",

@@ -1,6 +1,6 @@
-import { Work as WorkType } from "@/app/_types/work";
 import SectionLayout from "@/components/layouts/section/SectionLayout";
 import { MotionUl } from "@/components/ui-elements/Motion/MotionComponents";
+import type { Work as WorkType } from "@/types/work";
 
 import Work from "./Work";
 

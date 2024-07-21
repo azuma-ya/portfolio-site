@@ -1,12 +1,9 @@
-import React from "react";
-
 import Link from "next/link";
-
 import { twMerge } from "tailwind-merge";
 
-import { MotionDiv } from "@/app/_components/ui-elements/Motion/MotionComponents";
-import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
 import { Work as WorkType } from "@/app/_types/work";
+import { MotionDiv } from "@/components/ui-elements/Motion/MotionComponents";
+import { NextImage } from "@/components/ui-elements/iamge/NextImage";
 
 export interface WorkProps {
   work: WorkType;
@@ -30,7 +27,7 @@ const Work = ({ work, className }: WorkProps) => {
         <div
           className={twMerge(
             "h-80 overflow-hidden lg:rounded-l-[6rem] lg:rounded-tr-[6rem] md:rounded-l-[5rem] md:rounded-tr-[5rem] rounded-l-[4rem] rounded-tr-[4rem] border-2",
-            className
+            className,
           )}
         >
           <NextImage

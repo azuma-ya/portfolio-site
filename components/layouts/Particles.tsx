@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { loadAll } from "@tsparticles/all";
 import {
-  type Container,
-  type ISourceOptions,
   MoveDirection,
   OutMode,
+  type Container,
+  type ISourceOptions,
 } from "@tsparticles/engine";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 
@@ -115,7 +115,7 @@ export default function HeroParticles() {
       },
       detectRetina: true,
     }),
-    []
+    [],
   );
 
   if (init) {

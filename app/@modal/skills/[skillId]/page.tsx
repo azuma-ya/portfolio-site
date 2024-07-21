@@ -1,5 +1,3 @@
-import React from "react";
-
 import Work from "@/app/_features/works/components/Work";
 import { Skill } from "@/app/_types/skill";
 import { Work as WorkType } from "@/app/_types/work";
@@ -9,15 +7,10 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { n2skill, n2work } from "@/lib/notion/nameConvert";
 import { getDatabase, getPage } from "@/lib/notion/notion";
-
 
 export async function generateStaticParams() {
   const skillDatabase = await getDatabase(skillDatabaseId);

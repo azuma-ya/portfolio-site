@@ -1,5 +1,3 @@
-import React from "react";
-
 import BlogPresentation from "@/app/_features/blog/components/BlogPresentation";
 import { Blog } from "@/app/_types/blog";
 import { Skill } from "@/app/_types/skill";

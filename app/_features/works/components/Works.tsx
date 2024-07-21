@@ -1,12 +1,8 @@
-import React from "react";
-
-import { MotionUl } from "@/app/_components/ui-elements/Motion/MotionComponents";
 import { Work as WorkType } from "@/app/_types/work";
+import SectionLayout from "@/components/layouts/section/SectionLayout";
+import { MotionUl } from "@/components/ui-elements/Motion/MotionComponents";
 
 import Work from "./Work";
-import SectionLayout from "../../../_components/layouts/section/SectionLayout";
-
-
 
 export interface WorksProps {
   works: WorkType[];

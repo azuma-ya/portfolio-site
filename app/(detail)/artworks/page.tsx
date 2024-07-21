@@ -1,5 +1,3 @@
-import React from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,8 +6,6 @@ import { artworkDatabaseId } from "@/app/page";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { n2artwork } from "@/lib/notion/nameConvert";
 import { getDatabase } from "@/lib/notion/notion";
-
-
 
 const ArtWorksPage = async () => {
   const artworkDatabase = (await getDatabase(artworkDatabaseId)) as any;

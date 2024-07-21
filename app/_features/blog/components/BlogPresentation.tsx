@@ -1,15 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-
-import Link from "next/link";
-
 import { Check } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
-import { MotionDiv } from "@/app/_components/ui-elements/Motion/MotionComponents";
-import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
 import { Blog } from "@/app/_types/blog";
 import { Skill } from "@/app/_types/skill";
+import { MotionDiv } from "@/components/ui-elements/Motion/MotionComponents";
+import { NextImage } from "@/components/ui-elements/iamge/NextImage";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -27,7 +25,6 @@ import {
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Toggle } from "@/components/ui/toggle";
 import { cn } from "@/lib/utils";
-
 
 export interface BlogPresentationProps {
   blogs: Blog[];

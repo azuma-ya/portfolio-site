@@ -1,35 +1,32 @@
+import type { Metadata } from "next";
+import localFont from "next/font/local";
 import React from "react";
 
-import localFont from "next/font/local";
-
+import MotionWrapper from "@/components/layouts/MotionWrapper";
+import Footer from "@/components/layouts/footer/Footer";
 import { Toaster } from "@/components/ui/toaster";
-
-import MotionWrapper from "./_components/layouts/MotionWrapper";
-import Footer from "./_components/layouts/footer/Footer";
-
-import type { Metadata } from "next";
 
 import "./globals.css";
 
 const lineSeed = localFont({
   src: [
     {
-      path: "./LINESeedJP_OTF_Bd.woff2",
+      path: "../public/LINESeedJP_OTF_Bd.woff2",
       style: "normal",
       weight: "600",
     },
     {
-      path: "./LINESeedJP_OTF_Eb.woff2",
+      path: "../public/LINESeedJP_OTF_Eb.woff2",
       style: "normal",
       weight: "800",
     },
     {
-      path: "./LINESeedJP_OTF_Rg.woff2",
+      path: "../public/LINESeedJP_OTF_Rg.woff2",
       style: "normal",
       weight: "300",
     },
     {
-      path: "./LINESeedJP_OTF_Th.woff2",
+      path: "../public/LINESeedJP_OTF_Th.woff2",
       style: "normal",
       weight: "100",
     },

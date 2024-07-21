@@ -1,15 +1,15 @@
 import Link from "next/link";
 
+import BackGround from "@/components/layouts/BackGround";
+import HeroParticles from "@/components/layouts/Particles";
+import ScrollLayout from "@/components/layouts/ScrollLayout";
+import Header from "@/components/layouts/header/Header";
+import FollowPointer from "@/components/ui-elements/Motion/FollowPointer";
+import { MotionDiv } from "@/components/ui-elements/Motion/MotionComponents";
 import { Button } from "@/components/ui/button";
 import { n2artwork, n2blog, n2skill, n2work } from "@/lib/notion/nameConvert";
 import { getDatabase } from "@/lib/notion/notion";
 
-import BackGround from "./_components/layouts/BackGround";
-import HeroParticles from "./_components/layouts/Particles";
-import ScrollLayout from "./_components/layouts/ScrollLayout";
-import Header from "./_components/layouts/header/Header";
-import FollowPointer from "./_components/ui-elements/Motion/FollowPointer";
-import { MotionDiv } from "./_components/ui-elements/Motion/MotionComponents";
 import Artworks from "./_features/artworks/components/Artworks";
 import BlogPicUp from "./_features/blog/components/BlogPicUp";
 import BlogTopic from "./_features/blog/components/BlogTopic";
@@ -32,16 +32,16 @@ export default async function Home() {
   const artworkDatabase = (await getDatabase(artworkDatabaseId)) as any;
   const blogDatabase = (await getDatabase(blogDatabaseId)) as any;
   const blogs: Blog[] = await Promise.all(
-    blogDatabase.map(async (blog: any) => await n2blog(blog))
+    blogDatabase.map(async (blog: any) => await n2blog(blog)),
   );
   const works: Work[] = await Promise.all(
-    workDatabase.map(async (work: any) => await n2work(work))
+    workDatabase.map(async (work: any) => await n2work(work)),
   );
   const skills: Skill[] = await Promise.all(
-    skillDatabase.map(async (skill: any) => await n2skill(skill))
+    skillDatabase.map(async (skill: any) => await n2skill(skill)),
   );
   const artworks: Artwork[] = await Promise.all(
-    artworkDatabase.map(async (artwork: any) => await n2artwork(artwork))
+    artworkDatabase.map(async (artwork: any) => await n2artwork(artwork)),
   );
 
   return (

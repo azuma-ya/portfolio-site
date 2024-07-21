@@ -1,6 +1,4 @@
-import React from "react";
-
-import SectionLayout from "@/app/_components/layouts/section/SectionLayout";
+import SectionLayout from "@/components/layouts/section/SectionLayout";
 
 import ContactForm from "./ContactForm";
 

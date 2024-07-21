@@ -1,9 +1,9 @@
-import { Loader2 } from "lucide-react";
+import { Loader } from "lucide-react";
 
 const Loading = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center">
-      <Loader2 className="size-8 animate-spin font-bold" strokeWidth={4} />
+      <Loader className="size-8 animate-spin font-bold" />
     </div>
   );
 };

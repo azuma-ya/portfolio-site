@@ -1,15 +1,12 @@
-import React from "react";
-
 import Link from "next/link";
 
+import { Skill, SkillType } from "@/app/_types/skill";
+import SectionLayout from "@/components/layouts/section/SectionLayout";
 import {
   MotionDiv,
   MotionUl,
-} from "@/app/_components/ui-elements/Motion/MotionComponents";
-import { Skill, SkillType } from "@/app/_types/skill";
-
-import SectionLayout from "../../../_components/layouts/section/SectionLayout";
-import { NextImage } from "../../../_components/ui-elements/iamge/NextImage";
+} from "@/components/ui-elements/Motion/MotionComponents";
+import { NextImage } from "@/components/ui-elements/iamge/NextImage";
 
 export interface SkillsProps {
   skills: Skill[];

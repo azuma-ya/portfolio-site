@@ -1,4 +1,4 @@
-import DetailHeader from "../_components/layouts/header/DetailHeader";
+import DetailHeader from "@/components/layouts/header/DetailHeader";
 
 export default function DetailLayout({
   children,

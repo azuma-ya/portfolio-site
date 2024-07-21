@@ -1,77 +1,39 @@
 {
   "extends": [
     "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
     "plugin:tailwindcss/recommended",
-    // eslint-config-prettier を有効化
     "prettier"
   ],
-  "ignorePatterns": ["src/ui-components/**"],
-  "plugins": ["unused-imports"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "rules": {
-    "unused-imports/no-unused-imports": "error",
-    // importの並び順設定
-    "sort-imports": [
+    "@typescript-eslint/consistent-type-imports": [
       "error",
       {
-        "allowSeparatedGroups": true,
-        "ignoreCase": true,
-        "ignoreDeclarationSort": true,
-        "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+        "prefer": "type-imports",
+        "fixStyle": "separate-type-imports"
       }
     ],
-    "import/order": [
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "object-shorthand": "error",
+    "tailwindcss/no-custom-classname": "off",
+    "react/jsx-curly-brace-presence": "error",
+    "react/self-closing-comp": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          ["parent", "sibling"],
-          "object",
-          "type",
-          "index"
-        ],
-        "pathGroups": [
-          {
-            "pattern": "react",
-            "group": "external",
-            "position": "before"
-          },
-          {
-            "pattern": "next/**",
-            "group": "external",
-            "position": "before"
-          },
-          {
-            "pattern": "API",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "graphql/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "ui-components/**",
-            "group": "index",
-            "position": "after"
-          },
-          {
-            "pattern": "**\\.css",
-            "group": "index",
-            "position": "after"
-          }
-        ],
-        "pathGroupsExcludedImportTypes": ["react", "next/**"],
-        "newlines-between": "always",
-        "alphabetize": { "order": "asc", "caseInsensitive": false }
+        "component": true,
+        "html": false
       }
     ],
-    // importをファイル先頭に記述
-    "import/first": "error",
-    // 最後のimportの後に空行を追加
-    "import/newline-after-import": "error"
+    "@next/next/no-img-element": "off"
   }
 }

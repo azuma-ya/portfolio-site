@@ -1,10 +1,8 @@
-import React from "react";
-
-import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
-import AutoCarousel from "@/app/_components/ui-parts/AutoCarousel";
 import { Skill } from "@/app/_types/skill";
 import { Work } from "@/app/_types/work";
 import { skillDatabaseId, workDatabaseId } from "@/app/page";
+import { NextImage } from "@/components/ui-elements/iamge/NextImage";
+import AutoCarousel from "@/components/ui-parts/AutoCarousel";
 import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
@@ -30,7 +28,7 @@ const WorksModal = async ({ params }: WorksModalProps) => {
   const work: Work = await n2work(workData);
   const skillDatabase = (await getDatabase(skillDatabaseId)) as any;
   const skills: Skill[] = await Promise.all(
-    skillDatabase.map(async (skill: any) => await n2skill(skill))
+    skillDatabase.map(async (skill: any) => await n2skill(skill)),
   );
 
   return (
@@ -73,7 +71,7 @@ const WorksModal = async ({ params }: WorksModalProps) => {
             <ul className="mb-2 flex gap-4 text-nowrap py-2">
               {skills
                 .filter((skill: Skill) =>
-                  work.skills.map((skill: any) => skill.id).includes(skill.id)
+                  work.skills.map((skill: any) => skill.id).includes(skill.id),
                 )
                 .map((skill: Skill, index: number) => (
                   <li

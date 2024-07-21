@@ -1,8 +1,6 @@
-import React from "react";
-
-import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
 import { Artwork } from "@/app/_types/artworks";
 import { artworkDatabaseId } from "@/app/page";
+import { NextImage } from "@/components/ui-elements/iamge/NextImage";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { n2artwork } from "@/lib/notion/nameConvert";
 import { getDatabase, getPage } from "@/lib/notion/notion";

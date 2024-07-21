@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useTransition } from "react";
-
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { MotionButton } from "@/app/_components/ui-elements/Motion/MotionComponents";
+import { MotionButton } from "@/components/ui-elements/Motion/MotionComponents";
 import {
   Form,
   FormControl,

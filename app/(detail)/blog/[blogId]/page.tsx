@@ -1,7 +1,5 @@
-import React, { ClassAttributes, HTMLAttributes } from "react";
-
 import Link from "next/link";
-
+import { ClassAttributes, HTMLAttributes } from "react";
 import { FaHeart } from "react-icons/fa";
 import ReactMarkdown, { ExtraProps } from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -13,10 +11,10 @@ import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 
-import { MotionButton } from "@/app/_components/ui-elements/Motion/MotionComponents";
-import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
 import { Blog } from "@/app/_types/blog";
 import { blogDatabaseId } from "@/app/page";
+import { MotionButton } from "@/components/ui-elements/Motion/MotionComponents";
+import { NextImage } from "@/components/ui-elements/iamge/NextImage";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { saveImageIfNeed } from "@/lib/aws/aws";
@@ -46,7 +44,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
   const images = blogContent.parent
     .match(/!\[[^\]]*\]\(([^)]+)\)/g)
     ?.map((imageUrl: string) =>
-      imageUrl.match(/https?:\/\/[\w!?/+\-_~;.,*&@#$%()='[\]]+(?<!\))/)
+      imageUrl.match(/https?:\/\/[\w!?/+\-_~;.,*&@#$%()='[\]]+(?<!\))/),
     )
     .map((image: any) => ({
       name: decodeURI(image[0].match(/[^\/]*?(\.jpeg|\.jpg|\.png|\.gif)/)[0]),
@@ -55,7 +53,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
 
   if (!!images) {
     const savedImages = await Promise.all(
-      images.map(async (image: any) => await saveImageIfNeed(image))
+      images.map(async (image: any) => await saveImageIfNeed(image)),
     );
 
     savedImages.forEach((image: string, index: number) => {
@@ -64,7 +62,7 @@ const BlogDetailPage = async ({ params }: BlogDetailPageProps) => {
       ];
       blogContent.parent = blogContent.parent.replace(
         replace,
-        `![${image}](${image})`
+        `![${image}](${image})`,
       );
     });
   }

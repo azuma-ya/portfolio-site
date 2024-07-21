@@ -1,20 +1,14 @@
-import React from "react";
-
 import Link from "next/link";
 
+import { Blog } from "@/app/_types/blog";
 import {
   MotionButton,
   MotionDiv,
-} from "@/app/_components/ui-elements/Motion/MotionComponents";
-import { Blog } from "@/app/_types/blog";
-import {
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
+} from "@/components/ui-elements/Motion/MotionComponents";
+import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
-import { NextImage } from "../../../_components/ui-elements/iamge/NextImage";
-import AutoCarousel from "../../../_components/ui-parts/AutoCarousel";
-
+import { NextImage } from "../../../../components/ui-elements/iamge/NextImage";
+import AutoCarousel from "../../../../components/ui-parts/AutoCarousel";
 
 export interface BlogTopicPros {
   blogs: Blog[];

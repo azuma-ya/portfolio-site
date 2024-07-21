@@ -1,19 +1,15 @@
-import React from "react";
-
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-import { ArrowRight } from "lucide-react";
-
-import SectionLayout from "@/app/_components/layouts/section/SectionLayout";
+import { Artwork } from "@/app/_types/artworks";
+import SectionLayout from "@/components/layouts/section/SectionLayout";
 import {
   MotionButton,
   MotionDiv,
-} from "@/app/_components/ui-elements/Motion/MotionComponents";
-import { NextImage } from "@/app/_components/ui-elements/iamge/NextImage";
-import AutoCarousel from "@/app/_components/ui-parts/AutoCarousel";
-import { Artwork } from "@/app/_types/artworks";
+} from "@/components/ui-elements/Motion/MotionComponents";
+import { NextImage } from "@/components/ui-elements/iamge/NextImage";
+import AutoCarousel from "@/components/ui-parts/AutoCarousel";
 import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
-
 
 export interface ArtworkProps {
   artworks: Artwork[];

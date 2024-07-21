@@ -1,8 +1,5 @@
-import React from "react";
-
-import Link from "next/link";
-
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +13,6 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
-
 
 import { MotionButton } from "../../ui-elements/Motion/MotionComponents";
 

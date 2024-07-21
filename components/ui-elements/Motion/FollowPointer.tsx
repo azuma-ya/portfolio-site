@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 
-import { useFollowPointer } from "@/app/_hooks/use-follow-pointer";
-
+import { useFollowPointer } from "@/hooks/use-follow-pointer";
 import { MotionDiv } from "./MotionComponents";
 
 const FollowPointer = () => {
